@@ -1,0 +1,33 @@
+# === Sensitive / Personal ===
+.credentials.json
+settings.local.json
+
+# === Session & History (large, personal) ===
+history.jsonl
+sessions/
+shell-snapshots/
+paste-cache/
+session-env/
+file-history/
+
+# === Cache & Temp ===
+cache/
+downloads/
+debug/
+telemetry/
+backups/
+
+# === Per-project memory (personal context) ===
+projects/
+
+# === Plans (conversation-scoped) ===
+plans/
+
+# === IDE integration (local) ===
+ide/
+
+# === Tasks (personal workflow state) ===
+tasks/
+
+# === Plugins (installed locally, not portable) ===
+plugins/

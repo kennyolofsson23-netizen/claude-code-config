@@ -1,0 +1,104 @@
+{
+  "autoUpdatesChannel": "latest",
+  "skipDangerousModePermissionPrompt": true,
+  "env": {
+    "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "75"
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"C:\\Users\\Kenny\\AppData\\Local\\Programs\\Python\\Python311\\python.exe\" \"C:\\Users\\Kenny\\.claude\\hooks\\block-dangerous.py\""
+          },
+          {
+            "type": "command",
+            "command": "\"C:\\Users\\Kenny\\AppData\\Local\\Programs\\Python\\Python311\\python.exe\" \"C:\\Users\\Kenny\\.claude\\hooks\\pre-commit-secrets.py\""
+          }
+        ]
+      },
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"C:\\Users\\Kenny\\AppData\\Local\\Programs\\Python\\Python311\\python.exe\" \"C:\\Users\\Kenny\\.claude\\hooks\\block-secrets.py\""
+          }
+        ]
+      },
+      {
+        "matcher": "Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"C:\\Users\\Kenny\\AppData\\Local\\Programs\\Python\\Python311\\python.exe\" \"C:\\Users\\Kenny\\.claude\\hooks\\block-secrets.py\""
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"C:\\Users\\Kenny\\AppData\\Local\\Programs\\Python\\Python311\\python.exe\" \"C:\\Users\\Kenny\\.claude\\hooks\\auto-format.py\""
+          }
+        ]
+      },
+      {
+        "matcher": "Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"C:\\Users\\Kenny\\AppData\\Local\\Programs\\Python\\Python311\\python.exe\" \"C:\\Users\\Kenny\\.claude\\hooks\\auto-format.py\""
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "startup",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"C:\\Users\\Kenny\\.claude\\hooks\\session-start.sh\""
+          }
+        ]
+      },
+      {
+        "matcher": "resume",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"C:\\Users\\Kenny\\.claude\\hooks\\resume-context.sh\""
+          }
+        ]
+      }
+    ],
+    "PostCompact": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"C:\\Users\\Kenny\\.claude\\hooks\\post-compact.sh\""
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"C:\\Users\\Kenny\\AppData\\Local\\Programs\\Python\\Python311\\python.exe\" \"C:\\Users\\Kenny\\.claude\\hooks\\stop-verify.py\""
+          }
+        ]
+      }
+    ]
+  }
+}
