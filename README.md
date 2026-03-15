@@ -1,6 +1,6 @@
 # Claude Code God Setup
 
-> The most comprehensive Claude Code configuration available. 29 skills, 9 plugins, 13 hooks, 8 agents, 8 commands — self-documenting, self-improving, and personalizable via a built-in interview prompt.
+> The most comprehensive Claude Code configuration available. 39 skills, 10 plugins, 13 hooks, 8 agents, 8 commands — self-documenting, self-improving, and personalizable via a built-in interview prompt. Includes a full content production pipeline: AI images, programmatic video, voiceover, viral content, marketing, ads, email, and social media carousels.
 
 ## Why This Exists
 
@@ -22,8 +22,8 @@ This setup fixes all of that:
 
 | Category | Count | Highlights |
 |----------|-------|------------|
-| **Skills** | 29 | Security auditing, TDD, architecture (DDD/SDD), UI/UX design system, React best practices, database optimization, git workflows, research, SEO |
-| **Plugins** | 9 | feature-dev, frontend-design, code-review (5 parallel agents), pr-review-toolkit, security-guidance, hookify, ralph-loop (autonomous iteration), superpowers (TDD/debugging), ui-ux-pro-max (50+ styles, 161 color palettes) |
+| **Skills** | 39 | Security, TDD, architecture (DDD/SDD), UI/UX design, React, database, git, research, SEO, video (Remotion), voiceover (ElevenLabs), marketing suite, ads (6 platforms), email marketing, viral content, social carousels |
+| **Plugins** | 10 | feature-dev, frontend-design, code-review (5 parallel agents), pr-review-toolkit, security-guidance, hookify, ralph-loop (autonomous iteration), superpowers (TDD/debugging), ui-ux-pro-max (50+ styles, 161 palettes), last30days (trend research) |
 | **Agents** | 8 | error-detective, fullstack-engineer, refactoring-specialist, task-coordinator, test-architect, pr-reviewer, qa, researcher |
 | **Commands** | 8 | `/fix-issue` (GitHub issue to PR), `/tdd`, `/test-fix`, `/diagram`, `/checkpoint`, `/wrap-up`, `/orchestrate`, `/qa-setup` |
 | **Hooks** | 13 | Auto-format, auto-test, secret blocking, commit guards, dev server blocking, self-documenting inventory, meta-hookification |
@@ -227,6 +227,23 @@ CLAUDE.md (76 lines)           <- What Claude must always know
 You correct Claude → lessons.md updated → meta-hookify detects pattern
 → /hookify creates hook → hook enforces deterministically → no more corrections needed
 ```
+
+### Content Production Pipeline
+
+Built-in content factory — research, create, and distribute:
+
+| Step | Tool | Type |
+|------|------|------|
+| **Trend research** | Last 30 Days plugin | Reddit, X, TikTok, Brave, Bluesky |
+| **AI images** | Nano Banana Pro | Gemini-powered generation (needs GEMINI_API_KEY) |
+| **Video creation** | Remotion skill (37 rules) | React-based programmatic video |
+| **Voiceover** | ElevenLabs MCP | 70+ languages, voice cloning (needs ELEVENLABS_API_KEY) |
+| **Viral hooks** | Create Viral Content | 150+ hook formulas, thumbnail psychology |
+| **Marketing strategy** | AI Marketing Suite | 15 skills, 5 agents — copy, email, landing, ads, SEO |
+| **Ad campaigns** | claude-ads | 186 audit checks across Google, Meta, TikTok, LinkedIn, YouTube |
+| **Email marketing** | Email Marketing Bible | 55K-word knowledge base, 19 industry playbooks |
+| **Social carousels** | Instagram Thread Carousel + PostNitro | Thread-to-carousel PNGs, AI-generated slides |
+| **Content repurposing** | Content-to-Social + Social Content | Transform any content into platform-optimized posts |
 
 ### Key Design Decisions
 
