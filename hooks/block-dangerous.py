@@ -1,4 +1,5 @@
 """PreToolUse hook for Bash — blocks dangerous/destructive commands."""
+
 import sys
 import json
 
@@ -15,8 +16,6 @@ BLOCKED_PATTERNS = [
     "git push --force",
     "git push -f ",
     "git reset --hard",
-    "git push origin main",
-    "git push origin master",
     "git checkout -- .",
     "git clean -fd",
     "git clean -f",
@@ -29,6 +28,12 @@ BLOCKED_PATTERNS = [
     "vercel deploy --prod",
 ]
 
+# These are warned but allowed (Claude should confirm with user first)
+WARN_PATTERNS = [
+    "git push origin main",
+    "git push origin master",
+]
+
 for pattern in BLOCKED_PATTERNS:
     if pattern in cmd_lower:
         print(
@@ -37,6 +42,15 @@ for pattern in BLOCKED_PATTERNS:
             file=sys.stderr,
         )
         sys.exit(2)
+
+for pattern in WARN_PATTERNS:
+    if pattern in cmd_lower:
+        print(
+            f"WARNING: '{pattern}' detected. Make sure Kenny has confirmed this push.",
+            file=sys.stderr,
+        )
+        # Exit 0 — allow but warn
+        sys.exit(0)
 
 # Block any force push variant (git push ... -f or --force anywhere)
 if "git push" in cmd_lower and ("-f" in cmd_lower.split() or "--force" in cmd_lower):

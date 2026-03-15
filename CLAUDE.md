@@ -12,6 +12,7 @@ Kenny is NOT your QA. You are. Enterprise quality, zero shortcuts.
 - Run ALL tests before marking done. Check deploy logs. Verify E2E
 - If something breaks — fix it yourself. Don't report it, FIX it
 - NEVER say "it should work" — RUN IT AND PROVE IT
+- **Test LOCAL, not production**: After code changes, always test against localhost dev server. Never test against prod — your changes aren't deployed there yet
 - Testing flow: understand → `/tdd` → implement → `/qa` → `/simplify` → done
 
 ## Execution Rules
