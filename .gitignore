@@ -35,3 +35,12 @@ tasks/
 plugins/
 *.pyc
 __pycache__/
+
+# === Playwright MCP logs ===
+.playwright-mcp/
+
+# === Screenshots (large binaries) ===
+*.png
+
+# === Transient state ===
+security_warnings_state_*.json
