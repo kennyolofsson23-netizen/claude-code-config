@@ -1,6 +1,6 @@
 # === Sensitive / Personal ===
 .credentials.json
-settings.local.json
+# settings.local.json — safe to share (just permission allowlist)
 
 # === Session & History (large, personal) ===
 history.jsonl
