@@ -1,0 +1,11 @@
+# Personal headshots - add your own
+headshots/*.jpg
+headshots/*.png
+!headshots/.gitkeep
+
+# Python
+__pycache__/
+*.pyc
+
+# Environment
+.env
