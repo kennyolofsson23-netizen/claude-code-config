@@ -1,4 +1,5 @@
 """PostToolUse hook for Write/Edit — auto-formats Python and JS/TS files after changes."""
+
 import sys
 import json
 import os
@@ -14,7 +15,7 @@ if not file_path or not os.path.isfile(file_path):
 ext = os.path.splitext(file_path)[1].lower()
 PYTHON = r"C:\Users\Kenny\AppData\Local\Programs\Python\Python311\python.exe"
 NODE = r"C:\Program Files\nodejs\node.exe"
-NPX = r"C:\Users\Kenny\AppData\Roaming\npm\npx.cmd"
+NPX = r"C:\Program Files\nodejs\npx.cmd"
 
 try:
     if ext == ".py":
@@ -29,7 +30,13 @@ try:
         has_prettier = False
         check_dir = dir_path
         for _ in range(10):  # Walk up max 10 levels
-            for config in [".prettierrc", ".prettierrc.json", ".prettierrc.js", "prettier.config.js", "prettier.config.mjs"]:
+            for config in [
+                ".prettierrc",
+                ".prettierrc.json",
+                ".prettierrc.js",
+                "prettier.config.js",
+                "prettier.config.mjs",
+            ]:
                 if os.path.exists(os.path.join(check_dir, config)):
                     has_prettier = True
                     break

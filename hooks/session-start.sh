@@ -47,6 +47,10 @@ if [ -f "tasks/patterns.log" ]; then
   fi
 fi
 
+# Inject live tool inventory
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+bash "$SCRIPT_DIR/inventory.sh"
+
 echo ""
 echo "REMINDERS:"
 echo "- Plan mode for non-trivial tasks (3+ steps)"

@@ -1,86 +1,75 @@
-# Kenny — Global Claude Code Instructions
-
-These apply to ALL projects, not just V85.
-
-## User
-- Solo founder building multiple ventures. Learning fast, shipping fast
-- Values: brutal honesty, concise communication, autonomous execution
-- Never lazy — find root causes, execute properly, no band-aid fixes
-- Working on Windows 11 with Git Bash
+# Global Instructions
 
 ## Session Start
-1. Read the project's `tasks/lessons.md` — review for patterns relevant to current task
-2. Check `tasks/todo.md` for current work items
+1. Read `tasks/lessons.md` — check for patterns relevant to current task
+2. Read `tasks/todo.md` — check for current work items
 3. Do this BEFORE any other work — no exceptions
 
-## #1 Rule: Test-Driven Development
-THIS IS THE #1 RULE. Kenny is NOT your QA. You are.
-- BEFORE writing features: write tests first (or alongside)
-- BEFORE marking done: run ALL relevant tests and prove they pass
+## #1 Rule: Test-Driven Development — 100% Coverage
+Kenny is NOT your QA. You are. Enterprise quality, zero shortcuts.
+- 100% test coverage target: unit, integration, E2E, security
+- Write tests BEFORE implementing. Use `/tdd` for Red-Green-Refactor
+- Run ALL tests before marking done. Check deploy logs. Verify E2E
+- If something breaks — fix it yourself. Don't report it, FIX it
 - NEVER say "it should work" — RUN IT AND PROVE IT
-- No test framework? Create it. Testing flow: understand → write failing tests → implement → /qa → /simplify → done
+- Testing flow: understand → `/tdd` → implement → `/qa` → `/simplify` → done
 
-## Core Principles
-- **Just Do It**: NEVER tell Kenny to run something. You ARE a terminal — execute it
-- **Simplicity First**: Minimal changes, root causes, no band-aids. Only touch what's necessary
-- **Ruthless Quality**: Every output must be thorough, tested, and optimal
+## Execution Rules
+- **Just Do It**: NEVER tell Kenny to run something. You ARE a terminal — execute it yourself
 - **Plan Mode**: Enter plan mode for ANY non-trivial task (3+ steps). If something goes sideways, STOP and re-plan
-- **Verification**: Never mark a task complete without proving it works. "Looks right" is not verification
 - **Autonomous Bug Fixing**: When given a bug — just fix it. No hand-holding
 
-## Verify Everything (NOT JUST TESTS)
-- **UI changes**: screenshot with /webapp-testing and visually verify
-- **Linting**: run project linter if configured (eslint, ruff, etc.)
-- **Smoke test**: hit the actual endpoint / load the actual page when possible
-- Language-specific checks (tsc, pytest) → see `.claude/rules/` for details
-
 ## Auto-Invoke (MANDATORY)
-When a prompt matches a skill/command/plugin, USE IT immediately. Never wait for slash commands.
-- This applies to ALL skills/commands/plugins — current and future. Match intent to action
+When a prompt matches ANY installed tool (see inventory injected at session start), USE IT immediately.
+- Never wait for slash commands — match intent to action
+- Read the SKILL.md of unfamiliar skills before invoking
+- This applies to ALL skills/commands/plugins — current and future
 
-## Self-Improvement Loop (NON-NEGOTIABLE)
-- After ANY correction → IMMEDIATELY update `tasks/lessons.md`
-- Format: date, short title, what went wrong, the rule going forward
+## Verification Gate
+Before marking ANY task complete:
+- Run tests and show output
+- UI changes → `/webapp-testing` screenshot + `design-review` skill
+- Linting → run project linter if configured
+- "Looks right" is NOT verification
+
+## Self-Improvement (NON-NEGOTIABLE)
+- After ANY correction → update `tasks/lessons.md` immediately
 - Cross-project lessons → update global memory feedback files
+- Repeated workflow (2+) → `/skill-creator` | Repeated rule → `/hookify`
+- After non-trivial tasks → append to `tasks/patterns.log` (`YYYY-MM-DD | task-type | description`)
+- If a task type appears 2+ times in patterns.log → CREATE the skill/agent immediately
 
 ## Proactive Creation (DO THIS WITHOUT BEING ASKED)
-- **Skills**: Workflow repeated 2+ times → use /skill-creator to create it
-- **Agents**: Same task delegated repeatedly → create persistent agent
-- **Hooks**: Rule MUST be enforced every time → create hook in `~/.claude/hooks/`
+- **Skills**: Workflow repeated 2+ times → `/skill-creator`
+- **Agents**: Same task delegated repeatedly → create persistent agent in `~/.claude/agents/`
+- **Hooks**: Rule MUST be enforced every time → `/hookify` or manual in `~/.claude/hooks/`
 - After creating: test it, verify triggers, check for conflicts
-- **Pattern tracking**: After completing any non-trivial task, append a one-liner to `tasks/patterns.log` (format: `YYYY-MM-DD | task-type | short description`). Check this file before starting work — if a task type appears 2+ times, CREATE the skill/agent immediately
 
 ## Tool & Agent Discovery (CONTINUOUS)
-- Before significant tasks: is there a plugin, MCP, agent, skill, or CLI tool that could help?
-- Search GitHub, npm, awesome-claude-code lists for community-built skills/agents/MCPs before building from scratch
-- Check plugin marketplace (`~/.claude/plugins/marketplaces/`) for new additions
+- Before significant tasks: check if an installed skill, agent, command, or plugin already does this
+- Search GitHub, npm, awesome-claude-code lists before building from scratch
+- **CLI-first**: ALWAYS prefer CLIs over MCPs. If open-source, use `/cli-anything` to wrap it
 - When you find something useful: install it immediately, don't just mention it
 
 ## Subagent Strategy
 - Use subagents liberally — research, exploration, parallel work, code review, testing
 - One task per subagent. Use `isolation: worktree` for parallel code modifications
-- Global agents: `~/.claude/agents/` | Project agents: `.claude/agents/`
+- Use `task-coordinator` agent for complex multi-agent orchestration
 
 ## Context Hygiene
 - After compaction: ALWAYS re-read active files before editing
 - Use subagents for ALL investigation/research/discovery
 - When something goes wrong 2+ times: stop, re-think, don't keep retrying
 
-## Workflow
-- Plan first → `tasks/todo.md` with checkable items
-- Completed items → `tasks/done.md` IMMEDIATELY with date and summary
-- After code changes → auto-invoke /qa
-- After corrections → update `tasks/lessons.md`
+## Task Management
+- Plan → `tasks/todo.md` with checkable items
+- Done → `tasks/done.md` IMMEDIATELY with date and summary
+
+## Tools
+- **CLI-first**: `gh`, `stripe`, `vercel`, `pgcli`, `npx playwright`
+- **cli-anything**: `/cli-anything <repo>` to wrap open-source software
+- MCPs (no CLI exists): Context7 (docs), Playwright (browser), Sequential Thinking (reasoning), Sentry (errors)
 
 ## Environment
-- Full environment details (paths, commands) → always loaded from `~/.claude/rules/environment.md`
-- Language-specific rules → auto-loaded from `~/.claude/rules/` when touching matching files
-
-## Preferences
-- Language: English by default — override per-project if needed
-- Concise communication — no filler, lead with the answer
-
-## Tools & MCPs
-- MCPs installed: GitHub, Slack, Stripe, Supabase, Firebase, Linear, Playwright, GitLab, Asana, Context7, Greptile, Serena, Laravel
-- This is a STARTING POINT — search for and install new MCPs when needed
-- Use MCPs proactively — don't build custom servers when one exists
+- Windows 11, Git Bash. Details → `~/.claude/rules/environment.md`
+- Path-scoped rules auto-load from `~/.claude/rules/` for matching files

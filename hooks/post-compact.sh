@@ -8,6 +8,10 @@ echo "- Run tests to verify current state before making more changes"
 echo "- TDD is the #1 rule — prove everything works"
 echo "- Check git status to see what's been modified"
 
+# Inject live tool inventory (survives compaction)
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+bash "$SCRIPT_DIR/inventory.sh"
+
 # Re-inject lessons if available
 LESSONS=""
 for candidate in "tasks/lessons.md" "lessons.md"; do
