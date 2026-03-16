@@ -42,5 +42,9 @@ __pycache__/
 # === Screenshots (large binaries) ===
 *.png
 
+# === Node (test/lint tooling) ===
+node_modules/
+package-lock.json
+
 # === Transient state ===
 security_warnings_state_*.json
