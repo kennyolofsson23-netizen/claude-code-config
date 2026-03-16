@@ -1,5 +1,6 @@
 ---
 name: code-reviewer
+description: Senior engineer performing blocking code review — finds issues that would prevent a production deploy.
 model: sonnet
 memory: project
 tools:

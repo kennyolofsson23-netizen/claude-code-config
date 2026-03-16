@@ -1,4 +1,6 @@
 ---
+name: test-writer
+description: Writes comprehensive tests for existing codebases — unit, integration, and E2E based on specs and acceptance criteria.
 model: sonnet
 tools:
   - Read

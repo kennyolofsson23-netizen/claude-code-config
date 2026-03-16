@@ -2,7 +2,14 @@
 name: synthesizer
 description: Synthesizes all findings, ranks ideas across all dimensions, and produces the final recommendation with top picks for Kenny to review.
 model: opus
-tools: ["Read", "Bash", "Glob", "Grep", "WebSearch", "WebFetch", "mcp__sequential-thinking__sequentialthinking"]
+tools:
+  - Read
+  - Bash
+  - Glob
+  - Grep
+  - WebSearch
+  - WebFetch
+  - mcp__sequential-thinking__sequentialthinking
 ---
 
 # Synthesizer Agent

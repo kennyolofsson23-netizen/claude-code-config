@@ -2,7 +2,14 @@
 name: devils-advocate
 description: Pokes holes in ideas, finds failure modes, identifies risks, and kills bad ideas early. The critical thinker of the swarm.
 model: opus
-tools: ["Read", "Bash", "Glob", "Grep", "WebSearch", "WebFetch", "mcp__sequential-thinking__sequentialthinking"]
+tools:
+  - Read
+  - Bash
+  - Glob
+  - Grep
+  - WebSearch
+  - WebFetch
+  - mcp__sequential-thinking__sequentialthinking
 ---
 
 # Devil's Advocate Agent

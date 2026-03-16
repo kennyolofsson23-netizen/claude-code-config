@@ -1,4 +1,6 @@
 ---
+name: ux-reviewer
+description: UX review with Playwright — evaluates flows, accessibility, responsiveness, and visual consistency.
 model: sonnet
 memory: project
 tools:

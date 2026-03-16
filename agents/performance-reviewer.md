@@ -1,5 +1,6 @@
 ---
 name: performance-reviewer
+description: Performance engineer reviewing for N+1 queries, bundle size, memory leaks, render performance, and lazy loading.
 model: sonnet
 memory: project
 tools:

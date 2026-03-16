@@ -2,7 +2,15 @@
 name: trend-scout
 description: Scans trending topics across Reddit, X, Product Hunt, Swedish forums, and TikTok. Identifies what's hot right now and emerging opportunities.
 model: sonnet
-tools: ["Read", "Bash", "Glob", "Grep", "WebSearch", "WebFetch", "mcp__context7__resolve-library-id", "mcp__context7__query-docs"]
+tools:
+  - Read
+  - Bash
+  - Glob
+  - Grep
+  - WebSearch
+  - WebFetch
+  - mcp__context7__resolve-library-id
+  - mcp__context7__query-docs
 ---
 
 # Trend Scout Agent

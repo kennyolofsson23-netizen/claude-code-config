@@ -1,5 +1,6 @@
 ---
 name: correctness-reviewer
+description: Focused correctness review — checks error handling, test coverage, conventions, and type safety.
 model: sonnet
 memory: project
 tools:

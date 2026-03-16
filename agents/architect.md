@@ -1,4 +1,6 @@
 ---
+name: architect
+description: Systems architect that produces complete technical design documents (ARCHITECTURE.md) before any code is written.
 model: sonnet
 tools:
   - Read

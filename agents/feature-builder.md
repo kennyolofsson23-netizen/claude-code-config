@@ -1,4 +1,6 @@
 ---
+name: feature-builder
+description: Implements features from dev plans — writes clean, production-quality code with atomic commits.
 model: sonnet
 tools:
   - Read
