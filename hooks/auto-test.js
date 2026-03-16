@@ -44,6 +44,7 @@ try {
     stdio: "pipe",
     timeout: 30000,
     cwd: process.cwd(),
+    shell: true,
   });
   console.log(JSON.stringify({ tests: "pass", file: testFile, output: output.toString().slice(-300) }));
 } catch (e) {
