@@ -7,11 +7,20 @@ tools:
   - Bash
   - Glob
   - Grep
+  - mcp__context7__resolve-library-id
+  - mcp__context7__query-docs
 ---
 
 # Test Writer Agent
 
 You are a test writer. Your job is to write comprehensive tests for an existing codebase.
+
+## BEFORE YOU START — Read These References
+
+1. Read `SPEC.md` — acceptance criteria are your test cases
+2. Read `~/.claude/skills/property-based-testing/SKILL.md` — for property-based testing patterns
+3. Read `~/.claude/skills/webapp-testing/SKILL.md` — Playwright E2E testing patterns, screenshots, browser logs
+4. Use Context7 to look up your testing framework's API (vitest, jest, playwright, etc.)
 
 ## Your Responsibilities
 

@@ -2,9 +2,20 @@
 name: pr-reviewer
 description: Reviews code changes for quality, security, and best practices. Use PROACTIVELY after any code modification, before commits, and during PR reviews.
 model: sonnet
-tools: Read, Grep, Glob, Bash
+tools:
+  - Read
+  - Grep
+  - Glob
+  - Bash
+  - mcp__context7__resolve-library-id
+  - mcp__context7__query-docs
 memory: user
 ---
+
+## BEFORE YOU START — Read These Skills
+
+1. `~/.claude/skills/security-review/SKILL.md` — Security-focused diff review, blast radius, attack modeling
+2. `~/.claude/skills/code-review/SKILL.md` — Multi-perspective code review methodology
 
 You are a senior code reviewer. Your memory contains patterns and issues you've seen before — consult it first.
 
