@@ -1,3 +1,8 @@
+---
+name: tool-discovery
+description: "Tool Discovery Skill"
+---
+
 # Tool Discovery Skill
 
 Periodically audit for new community-built Claude Code tools worth installing.

@@ -1,3 +1,8 @@
+---
+name: code-review
+description: "Code Review Plugin"
+---
+
 # Code Review Plugin
 
 Comprehensive multi-agent code review system that examines code from multiple specialized perspectives to catch bugs, security issues, and quality problems before they reach production.

@@ -1,3 +1,8 @@
+---
+name: kaizen
+description: "Kaizen Plugin"
+---
+
 # Kaizen Plugin
 
 Continuous improvement framework inspired by the Toyota Production System that brings Lean manufacturing principles to software development through systematic problem analysis, root cause investigation, and iterative improvement cycles.

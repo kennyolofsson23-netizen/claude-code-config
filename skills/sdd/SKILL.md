@@ -1,3 +1,8 @@
+---
+name: sdd
+description: "Spec-Driven Development (SDD) Plugin: Continuous Learning + LLM-as-Judge + Agent Swarm"
+---
+
 # Spec-Driven Development (SDD) Plugin: Continuous Learning + LLM-as-Judge + Agent Swarm
 
 Comprehensive specification-driven development workflow plugin that transforms prompts into production-ready implementations through structured planning, architecture design, and quality-gated execution.

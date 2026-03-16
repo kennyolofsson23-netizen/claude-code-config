@@ -1,3 +1,8 @@
+---
+name: reflexion
+description: "Reflexion Plugin"
+---
+
 # Reflexion Plugin
 
 Self-refinement framework that introduces feedback and refinement loops to improve output quality through iterative improvement, complexity triage, and verification.

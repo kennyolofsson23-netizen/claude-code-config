@@ -1,3 +1,8 @@
+---
+name: ddd
+description: "Domain-Driven Development Plugin"
+---
+
 # Domain-Driven Development Plugin
 
 Code quality framework that embeds Clean Architecture, SOLID principles, and Domain-Driven Design patterns into your development workflow through persistent memory updates and contextual skills.
