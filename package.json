@@ -5,7 +5,8 @@
   "description": "Tests and tooling for ~/.claude hooks, agents, and config",
   "scripts": {
     "test": "node --test tests/hooks/js/**/*.test.js",
-    "test:py": "python -m pytest tests/hooks/py/ -v",
+    "test:py": "C:\\Users\\Kenny\\AppData\\Local\\Programs\\Python\\Python311\\python.exe -m pytest tests/hooks/py/ -v",
+    "test:all": "npm test && npm run test:py",
     "lint": "eslint",
     "lint:fix": "eslint --fix"
   },
