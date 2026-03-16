@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "ux-best-practices": {
+      "command": "cmd",
+      "args": ["/c", "npx", "@elsahafy/ux-mcp-server"]
+    }
+  }
+}
