@@ -61,6 +61,7 @@ if (tsconfigDir) {
       cwd: tsconfigDir,
       stdio: "pipe",
       timeout: TIMEOUT,
+      shell: true,
     });
   } catch (e) {
     const stderr = (e.stdout || e.stderr || "").toString();
@@ -93,6 +94,7 @@ if (eslintDir) {
       cwd: eslintDir,
       stdio: "pipe",
       timeout: TIMEOUT,
+      shell: true,
     });
   } catch (e) {
     const output = (e.stdout || e.stderr || "").toString();

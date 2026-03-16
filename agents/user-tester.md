@@ -1,4 +1,6 @@
 ---
+name: user-tester
+description: Simulates a real first-time user via Playwright — finds usability issues, confusing flows, and broken experiences.
 model: sonnet
 tools:
   - Read

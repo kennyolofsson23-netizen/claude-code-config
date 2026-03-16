@@ -1,5 +1,3 @@
-const { execFileSync } = require("child_process");
-
 let raw = "";
 try {
   raw = require("fs").readFileSync(0, "utf8");

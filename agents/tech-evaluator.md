@@ -2,7 +2,15 @@
 name: tech-evaluator
 description: Evaluates technical feasibility, estimates complexity, suggests architecture, and identifies shortcuts. The engineer of the swarm.
 model: sonnet
-tools: ["Read", "Bash", "Glob", "Grep", "WebSearch", "WebFetch", "mcp__context7__resolve-library-id", "mcp__context7__query-docs"]
+tools:
+  - Read
+  - Bash
+  - Glob
+  - Grep
+  - WebSearch
+  - WebFetch
+  - mcp__context7__resolve-library-id
+  - mcp__context7__query-docs
 ---
 
 # Tech Evaluator Agent

@@ -1,4 +1,6 @@
 ---
+name: content-writer
+description: UX copywriter that replaces placeholder text with real, polished copy across landing pages, UI, and meta tags.
 model: sonnet
 tools:
   - Read

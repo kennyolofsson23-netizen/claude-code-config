@@ -1,4 +1,6 @@
 ---
+name: project-scaffolder
+description: Creates complete, production-ready project structures from scratch with proper tooling and config.
 model: sonnet
 tools:
   - Read

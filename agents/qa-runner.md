@@ -1,4 +1,6 @@
 ---
+name: qa-runner
+description: Final quality gate — verifies builds, tests, and types pass, and fixes anything that doesn't.
 model: sonnet
 memory: project
 tools:

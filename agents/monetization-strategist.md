@@ -2,7 +2,15 @@
 name: monetization-strategist
 description: Evaluates pricing models, revenue streams, unit economics, and Swedish payment culture. Finds the path to revenue.
 model: sonnet
-tools: ["Read", "Bash", "Glob", "Grep", "WebSearch", "WebFetch", "mcp__context7__resolve-library-id", "mcp__context7__query-docs"]
+tools:
+  - Read
+  - Bash
+  - Glob
+  - Grep
+  - WebSearch
+  - WebFetch
+  - mcp__context7__resolve-library-id
+  - mcp__context7__query-docs
 ---
 
 # Monetization Strategist Agent

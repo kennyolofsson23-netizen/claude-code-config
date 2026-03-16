@@ -2,7 +2,15 @@
 name: market-analyst
 description: Analyzes Swedish market data, demographics, spending patterns, and market gaps. Identifies where the money is.
 model: sonnet
-tools: ["Read", "Bash", "Glob", "Grep", "WebSearch", "WebFetch", "mcp__context7__resolve-library-id", "mcp__context7__query-docs"]
+tools:
+  - Read
+  - Bash
+  - Glob
+  - Grep
+  - WebSearch
+  - WebFetch
+  - mcp__context7__resolve-library-id
+  - mcp__context7__query-docs
 ---
 
 # Market Analyst Agent

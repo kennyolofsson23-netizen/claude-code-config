@@ -1,5 +1,6 @@
 ---
 name: security-reviewer
+description: Security engineer reviewing for injection, secrets exposure, auth flaws, OWASP vulnerabilities, and CVEs.
 model: sonnet
 memory: project
 tools:

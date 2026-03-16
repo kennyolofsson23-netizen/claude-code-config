@@ -2,7 +2,15 @@
 name: swedish-specialist
 description: Evaluates ideas through the Swedish lens — culture, regulations, Swish/BankID, local competitors, and Nordic consumer behavior.
 model: sonnet
-tools: ["Read", "Bash", "Glob", "Grep", "WebSearch", "WebFetch", "mcp__context7__resolve-library-id", "mcp__context7__query-docs"]
+tools:
+  - Read
+  - Bash
+  - Glob
+  - Grep
+  - WebSearch
+  - WebFetch
+  - mcp__context7__resolve-library-id
+  - mcp__context7__query-docs
 ---
 
 # Swedish Specialist Agent

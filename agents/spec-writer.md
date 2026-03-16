@@ -1,4 +1,6 @@
 ---
+name: spec-writer
+description: Writes detailed product specs (SPEC.md) with user stories, acceptance criteria, and feature prioritization.
 model: opus
 memory: project
 tools:

@@ -1,0 +1,17 @@
+{
+  "name": "claude-config",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Tests and tooling for ~/.claude hooks, agents, and config",
+  "scripts": {
+    "test": "node --test tests/hooks/js/**/*.test.js",
+    "test:py": "C:\\Users\\Kenny\\AppData\\Local\\Programs\\Python\\Python311\\python.exe -m pytest tests/hooks/py/ -v",
+    "test:all": "npm test && npm run test:py",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix"
+  },
+  "devDependencies": {
+    "eslint": "^9.0.0",
+    "js-yaml": "^4.1.0"
+  }
+}

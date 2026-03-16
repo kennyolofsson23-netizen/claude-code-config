@@ -19,7 +19,7 @@ BLOCKED_PATTERNS = [
     "git checkout -- .",
     "git clean -fd",
     "git clean -f",
-    "git branch -D",
+    # git branch -D handled separately (case-sensitive check)
     "drop database",
     "drop table",
     "truncate table",
@@ -51,6 +51,15 @@ for pattern in WARN_PATTERNS:
         )
         # Exit 0 — allow but warn
         sys.exit(0)
+
+# Block force branch delete (case-sensitive: -D is force, -d is safe)
+if "git branch" in cmd_lower and "-D" in command:
+    print(
+        "BLOCKED: 'git branch -D' detected. This is a dangerous/destructive command. "
+        "Ask Kenny for explicit confirmation before proceeding.",
+        file=sys.stderr,
+    )
+    sys.exit(2)
 
 # Block any force push variant (git push ... -f or --force anywhere)
 if "git push" in cmd_lower and ("-f" in cmd_lower.split() or "--force" in cmd_lower):

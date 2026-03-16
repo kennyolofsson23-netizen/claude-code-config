@@ -2,7 +2,14 @@
 name: creative-visionary
 description: Generates wild moonshot ideas by connecting unrelated domains, blue ocean thinking, and "what if" scenarios. The idea factory of the swarm.
 model: opus
-tools: ["Read", "Bash", "Glob", "Grep", "WebSearch", "WebFetch", "mcp__sequential-thinking__sequentialthinking"]
+tools:
+  - Read
+  - Bash
+  - Glob
+  - Grep
+  - WebSearch
+  - WebFetch
+  - mcp__sequential-thinking__sequentialthinking
 ---
 
 # Creative Visionary Agent

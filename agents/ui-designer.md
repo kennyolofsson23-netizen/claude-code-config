@@ -1,4 +1,6 @@
 ---
+name: ui-designer
+description: Creates DESIGN.md with layouts, color systems, typography, component specs, and responsive breakpoints.
 model: sonnet
 tools:
   - Read
