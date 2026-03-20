@@ -11,6 +11,12 @@ tools:
   - Grep
   - mcp__context7__resolve-library-id
   - mcp__context7__query-docs
+  - mcp__playwright__browser_navigate
+  - mcp__playwright__browser_snapshot
+  - mcp__playwright__browser_take_screenshot
+  - mcp__playwright__browser_click
+  - mcp__playwright__browser_fill_form
+  - mcp__playwright__browser_console_messages
 ---
 
 # Test Writer Agent

@@ -32,7 +32,28 @@ Use Context7 to look up the latest API docs for Next.js, Prisma, Tailwind, and s
 3. **Install dependencies** — run package managers to install required packages
 4. **Set up tooling** — TypeScript, ESLint, Prettier, testing framework
 5. **Create initial files** — README, .gitignore, .env.example, basic app structure
-6. **Make initial commit** — stage and commit all scaffolded files
+6. **Set up traction boilerplate** — see below
+7. **Make initial commit** — stage and commit all scaffolded files
+
+## Traction Boilerplate (MANDATORY)
+
+Every scaffold MUST include:
+1. Plausible analytics snippet (`<script defer data-domain="TOOL.usetools.dev" src="https://plausible.io/js/script.js"></script>`)
+2. `sitemap.ts` (Next.js App Router sitemap generation)
+3. `robots.txt` with AI crawler rules (allow GPTBot, ClaudeBot, PerplexityBot, Google-Extended)
+4. `llms.txt` template at `public/llms.txt`
+5. Portfolio footer component (`components/portfolio-footer.tsx`) linking to usetools.dev
+6. Social meta tag layout in root `layout.tsx` (OG + Twitter Card placeholders)
+7. Usage counter infrastructure: API route (`app/api/stats/route.ts`) + display component
+8. First-paragraph definition template in landing page
+9. PWA manifest (`public/manifest.json`) with tool name and icon placeholders
+
+### Skill References
+- `~/.claude/skills/seo/SKILL.md` — SEO meta tags, structured data
+- `~/.claude/skills/web-asset-generator/SKILL.md` — Favicon, app icons, social images
+- `~/.claude/skills/llm-docs-optimizer/SKILL.md` — llms.txt generation
+- `~/.claude/skills/best-practices/SKILL.md` — modern security and code quality defaults
+- `~/.claude/skills/project-init/SKILL.md` — project initialization conventions
 
 ## Output Format
 

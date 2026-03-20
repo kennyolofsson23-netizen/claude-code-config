@@ -13,6 +13,8 @@ tools:
   - mcp__sequential-thinking__sequentialthinking
   - mcp__context7__resolve-library-id
   - mcp__context7__query-docs
+  - mcp__sentry__search_issues
+  - mcp__sentry__get_issue_details
 ---
 
 # Code Reviewer Agent
@@ -26,6 +28,10 @@ Read these skill files for detailed review methodology:
 1. `~/.claude/skills/security-audit/SKILL.md` — Comprehensive security audit checklist (OWASP, secrets, injection)
 2. `~/.claude/skills/owasp-llm-top10/SKILL.md` — If the project uses AI/LLM APIs
 3. `~/.claude/skills/code-review/SKILL.md` — Code review best practices
+4. `~/.claude/skills/best-practices/SKILL.md` — modern web dev best practices
+5. `~/.claude/skills/react-best-practices/SKILL.md` — React patterns and anti-patterns
+6. `~/.claude/skills/performance/SKILL.md` — performance review checklist
+7. `~/.claude/skills/accessibility/SKILL.md` — accessibility review checklist
 
 Read them before starting your review. Use Sequential Thinking MCP for complex analysis chains.
 

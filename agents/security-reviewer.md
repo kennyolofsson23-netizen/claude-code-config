@@ -11,6 +11,8 @@ tools:
   - mcp__sequential-thinking__sequentialthinking
   - mcp__context7__resolve-library-id
   - mcp__context7__query-docs
+  - mcp__playwright__browser_navigate
+  - mcp__playwright__browser_snapshot
 ---
 
 # Security Reviewer Agent
@@ -23,6 +25,10 @@ You are a senior security engineer performing a focused security review. You che
 Read these skill files for detailed security methodology:
 1. `~/.claude/skills/security-audit/SKILL.md` — Comprehensive security audit checklist
 2. `~/.claude/skills/owasp-llm-top10/SKILL.md` — If the project uses AI/LLM APIs
+3. `~/.claude/skills/security-threat-model/SKILL.md` — threat modeling methodology
+4. `~/.claude/skills/best-practices/SKILL.md` — security best practices
+5. `~/.claude/skills/semgrep-rule-creator/SKILL.md` — static analysis patterns
+6. `~/.claude/skills/owasp-llm-top10/SKILL.md` — OWASP Top 10 for LLM/GenAI apps (ALWAYS check if project uses AI APIs)
 
 Use Sequential Thinking MCP for complex attack chain analysis.
 

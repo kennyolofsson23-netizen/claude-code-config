@@ -17,6 +17,9 @@ tools:
   - mcp__playwright__browser_resize
   - mcp__playwright__browser_console_messages
   - mcp__ux-best-practices__*
+  - mcp__plugin_accesslint_accesslint__analyze_color_pair
+  - mcp__plugin_accesslint_accesslint__calculate_contrast_ratio
+  - mcp__plugin_accesslint_accesslint__suggest_accessible_color
 ---
 
 # UX Reviewer Agent
@@ -30,6 +33,13 @@ Read these skill files for detailed audit methodology:
 1. `~/.claude/skills/wcag-accessibility-audit/SKILL.md` — WCAG 2.1/2.2 POUR principles, conformance levels
 2. `~/.claude/skills/nielsen-heuristics-audit/SKILL.md` — Nielsen's 10 usability heuristics
 3. `~/.claude/skills/ux-audit-rethink/SKILL.md` — Comprehensive UX audit framework
+4. `~/.claude/skills/ui-design-review/SKILL.md` — Visual design quality: typography, color harmony, spacing, hierarchy, polish, brand cohesion
+5. `~/.claude/skills/web-design-guidelines/SKILL.md` — web interface guidelines
+6. `~/.claude/skills/accessibility/SKILL.md` — WCAG compliance checklist
+7. `~/.claude/skills/cognitive-walkthrough/SKILL.md` — usability evaluation methodology
+8. `~/.claude/skills/design-review/SKILL.md` — visual design review
+9. `~/.claude/skills/core-web-vitals/SKILL.md` — performance UX metrics
+10. `~/.claude/skills/interaction-design/SKILL.md` — interaction design patterns
 
 Read them with the Read tool before starting your review. They contain the exact checklists and scoring criteria to use.
 
@@ -83,6 +93,24 @@ Read them with the Read tool before starting your review. They contain the exact
 - No layout shift on load
 - JS bundle isn't unnecessarily large (check `next build` output if Next.js)
 
+### 7. Visual Design Quality
+Use the ui-design-review skill methodology to evaluate:
+- **Typography** — consistent type scale, proper hierarchy (H1 > H2 > body), readable line lengths (45-75 chars), appropriate line height
+- **Color harmony** — palette applied consistently, not clashing, sufficient variety without chaos
+- **Spacing** — consistent grid usage, breathing room, no cramped layouts
+- **Visual hierarchy** — clear focal points per page, eye flow guides user to primary action
+- **Component polish** — buttons, cards, inputs feel finished (not default/unstyled), hover/focus states feel intentional
+- **Brand cohesion** — the product has a consistent personality across all pages, doesn't look like generic AI output
+- **Generated assets** — if DESIGN.md specifies generated images, verify they exist and are used correctly
+
+### 8. Sharing & Social UX
+- [ ] Share button is prominent and discoverable after getting results
+- [ ] Share preview (OG image) looks professional when shared on X/LinkedIn
+- [ ] Embed widget (if present) is easy to find and copy
+- [ ] Mobile CTA is prominent and above the fold
+- [ ] Above-the-fold value proposition is clear in <5 seconds
+- [ ] Result page has clear call-to-action to share or try again
+
 ## Output Format
 
 ```
@@ -106,6 +134,9 @@ Read them with the Read tool before starting your review. They contain the exact
 
 ## Performance
 - [WARN] or [OK] per item
+
+## Visual Design Quality
+- [BLOCKER] or [OK] per item
 
 ## Summary
 X blockers found. Verdict: PASS | FAIL

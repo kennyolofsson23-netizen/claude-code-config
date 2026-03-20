@@ -48,3 +48,8 @@ package-lock.json
 
 # === Transient state ===
 security_warnings_state_*.json
+.runner.pid
+*.bak
+
+# === Agent research outputs (personal) ===
+agent-memory/researcher/research_*

@@ -16,6 +16,7 @@ tools:
   - mcp__playwright__browser_navigate
   - mcp__playwright__browser_snapshot
   - mcp__playwright__browser_take_screenshot
+  - mcp__sequential-thinking__sequentialthinking
 ---
 
 # Content Writer Agent
@@ -70,6 +71,25 @@ Use WebSearch to study competitor copy for tone and positioning.
 - Page titles (product-specific, not generic)
 - Meta descriptions
 - OpenGraph text
+
+## AI-Citation-Friendly Copy
+
+Write copy that AI systems (ChatGPT, Claude, Perplexity) can cite and quote:
+- **First-paragraph definition**: "[Name] is a free AI [category] tool that [function]. Used by [X]+ people."
+- **Statistics and concrete numbers**: "Analyzes 50+ data points", "Results in under 3 seconds"
+- **Direct answers**: Write FAQ content as clear Q&A (maps to FAQPage JSON-LD schema — 3-5 real questions)
+- **Authoritative tone**: State facts confidently, cite methodology where possible
+- **Social share templates**: Pre-filled share text ("Check out what AI found in my X!")
+- **Structured data copy**: JSON-LD description fields should be compelling, not generic
+- **Portfolio footer copy**: "Part of usetools.dev — free AI tools, no login required"
+
+### Skill References
+- `~/.claude/skills/seo-content/SKILL.md` — SEO content strategy, keyword targeting
+- `~/.claude/skills/create-viral-content/SKILL.md` — viral/shareable content patterns
+- `~/.claude/skills/content-to-social/SKILL.md` — social media content optimization
+- `~/.claude/skills/geo-citability/SKILL.md` — AI-citable content writing
+- `~/.claude/skills/geo-content/SKILL.md` — E-E-A-T content quality signals
+- `~/.claude/skills/launch-strategy/SKILL.md` — launch copy and positioning
 
 ## Rules
 - Read the source idea and research findings for brand voice context

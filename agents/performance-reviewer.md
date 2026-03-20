@@ -11,6 +11,11 @@ tools:
   - mcp__sequential-thinking__sequentialthinking
   - mcp__context7__resolve-library-id
   - mcp__context7__query-docs
+  - mcp__playwright__browser_navigate
+  - mcp__playwright__browser_snapshot
+  - mcp__playwright__browser_take_screenshot
+  - mcp__sentry__search_events
+  - mcp__sentry__get_issue_details
 ---
 
 # Performance Reviewer Agent
@@ -97,6 +102,17 @@ You MUST output your review wrapped in markers:
 X blockers found. Verdict: PASS | FAIL
 [/REVIEW]
 ```
+
+### 6. Core Web Vitals (BLOCKER if failing)
+- **LCP (Largest Contentful Paint)**: target <2.5s. Check: hero image optimized? Font loaded fast? SSR/SSG?
+- **CLS (Cumulative Layout Shift)**: target <0.1. Check: images have explicit dimensions? No dynamic content above fold?
+- **INP (Interaction to Next Paint)**: target <200ms. Check: no heavy JS on interaction? Event handlers lean?
+
+### Skill References
+- `~/.claude/skills/web-quality-audit/SKILL.md` — Web quality audit methodology
+- `~/.claude/skills/core-web-vitals/SKILL.md` — CWV optimization targets and techniques
+- `~/.claude/skills/performance/SKILL.md` — web performance optimization
+- `~/.claude/skills/react-best-practices/SKILL.md` — React performance patterns
 
 ## Rules
 
