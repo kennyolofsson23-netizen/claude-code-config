@@ -1,6 +1,6 @@
 # Claude Code God Setup
 
-> The most comprehensive Claude Code configuration available. 39 skills, 10 plugins, 13 hooks, 8 agents, 8 commands — self-documenting, self-improving, and personalizable via a built-in interview prompt. Includes a full content production pipeline: AI images, programmatic video, voiceover, viral content, marketing, ads, email, and social media carousels.
+> The most comprehensive Claude Code configuration available. 97 skills, 11 plugins, 15 hooks, 46 agents, 8 commands — self-documenting, self-improving, and personalizable via a built-in interview prompt. Includes a full content production pipeline, GEO/SEO audit suite, and cross-project learnings from production AI pipeline work.
 
 ## Why This Exists
 
@@ -22,11 +22,11 @@ This setup fixes all of that:
 
 | Category | Count | Highlights |
 |----------|-------|------------|
-| **Skills** | 39 | Security, TDD, architecture (DDD/SDD), UI/UX design, React, database, git, research, SEO, video (Remotion), voiceover (ElevenLabs), marketing suite, ads (6 platforms), email marketing, viral content, social carousels |
-| **Plugins** | 10 | feature-dev, frontend-design, code-review (5 parallel agents), pr-review-toolkit, security-guidance, hookify, ralph-loop (autonomous iteration), superpowers (TDD/debugging), ui-ux-pro-max (50+ styles, 161 palettes), last30days (trend research) |
-| **Agents** | 8 | error-detective, fullstack-engineer, refactoring-specialist, task-coordinator, test-architect, pr-reviewer, qa, researcher |
+| **Skills** | 97 | Security, TDD, architecture (DDD/SDD), UI/UX design, React, database, git, research, SEO (16 skills), GEO audit suite (14 skills), video (Remotion), voiceover (ElevenLabs), marketing suite, ads (6 platforms), email marketing, viral content, social carousels, accessibility (WCAG), performance, web quality |
+| **Plugins** | 11 | feature-dev, frontend-design, code-review (5 parallel agents), pr-review-toolkit, security-guidance, hookify, ralph-loop (autonomous iteration), superpowers (TDD/debugging), ui-ux-pro-max (50+ styles, 161 palettes), last30days (trend research), accesslint |
+| **Agents** | 46 | 8 core dev (architect, code-reviewer, feature-builder, fullstack-engineer, qa-runner, test-writer, error-detective, refactoring-specialist), 13 SEO/marketing (seo-content, seo-technical, geo-*, market-analyst, trend-scout), 8 quality/review (security, performance, UX, correctness), 4 creative (ui-designer, creative-visionary, devils-advocate, synthesizer), 3 business (distribution-analyst, growth-reviewer, monetization-strategist) + more |
 | **Commands** | 8 | `/fix-issue` (GitHub issue to PR), `/tdd`, `/test-fix`, `/diagram`, `/checkpoint`, `/wrap-up`, `/orchestrate`, `/qa-setup` |
-| **Hooks** | 13 | Auto-format, auto-test, secret blocking, commit guards, dev server blocking, self-documenting inventory, meta-hookification |
+| **Hooks** | 15 | Auto-format, auto-lint, auto-test, secret blocking, commit guards, dev server blocking, MD creation blocking, agent schema validation, self-documenting inventory, meta-hookification, session lifecycle |
 | **Rules** | 6 | Environment, Python, TypeScript, git safety, coding style, error handling |
 
 ## Quick Start
@@ -193,15 +193,17 @@ Based on my answers, update:
 ## Architecture
 
 ```
-CLAUDE.md (76 lines)           <- What Claude must always know
+CLAUDE.md (77 lines)           <- What Claude must always know
 ├── inventory.sh               <- Self-documenting: live tool scan every session
 ├── meta-hookify.py            <- Self-improving: repeated corrections → hook suggestions
-├── 13 hooks                   <- Deterministic: format, test, block, guard (can't be skipped)
+├── 15 hooks                   <- Deterministic: format, test, lint, block, guard (can't be skipped)
 ├── 6 rules                    <- Path-scoped: load only for matching file types
-├── 29 skills                  <- On-demand: descriptions loaded, full content when invoked
-├── 9 plugins                  <- Auto-loaded: extend Claude's capabilities
-├── 8 agents                   <- Specialist subagents for complex work
-└── 8 commands                 <- Workflow automation (/fix-issue, /tdd, etc.)
+├── 97 skills                  <- On-demand: descriptions loaded, full content when invoked
+├── 11 plugins                 <- Auto-loaded: extend Claude's capabilities
+├── 46 agents                  <- Specialist subagents for complex work
+├── 8 commands                 <- Workflow automation (/fix-issue, /tdd, etc.)
+├── 66 scripts                 <- Agentic SEO/GEO Python tools
+└── 236 tests                  <- Hook test suite with CI/CD
 ```
 
 ### How It Works
@@ -228,6 +230,18 @@ You correct Claude → lessons.md updated → meta-hookify detects pattern
 → /hookify creates hook → hook enforces deterministically → no more corrections needed
 ```
 
+### What's New (March 2026)
+
+| Addition | Details |
+|----------|---------|
+| **GEO/SEO Suite** | 14 GEO skills (AI search optimization), 16 SEO skills, 13 specialized agents, 66 Python scripts for agentic audits |
+| **46 Agents** | Up from 8 — specialized agents for SEO, marketing, growth, accessibility, quality review, and business analysis |
+| **236 Tests + CI/CD** | Full test suite for all hooks (JS + Python), GitHub Actions on Windows |
+| **Cross-Project Learnings** | Battle-tested patterns from production AI pipeline work (see `docs/learnings.md`) |
+| **Accessibility** | AccessLint plugin, WCAG audit skill, contrast checking |
+| **Auto-lint Hook** | ESLint + tsc run automatically on code edits |
+| **Agent Schema Validation** | Hook validates YAML frontmatter on all agent files |
+
 ### Content Production Pipeline
 
 Built-in content factory — research, create, and distribute:
@@ -251,7 +265,7 @@ Built-in content factory — research, create, and distribute:
 |----------|-----|
 | **CLI-first over MCPs** | CLIs are faster, no auth overhead, no protocol latency. MCPs only where no CLI exists |
 | **Hooks over instructions** | CLAUDE.md instructions can be ignored. Hooks run automatically — deterministic enforcement |
-| **76-line CLAUDE.md** | Anthropic says: bloated CLAUDE.md files cause Claude to ignore instructions. Every line must prevent a mistake |
+| **77-line CLAUDE.md** | Anthropic says: bloated CLAUDE.md files cause Claude to ignore instructions. Every line must prevent a mistake |
 | **Self-documenting inventory** | No manual updates when tools change. `inventory.sh` scans the filesystem |
 | **Path-scoped rules** | Python rules only load when editing `.py` files. No wasted context |
 | **Skills on-demand** | Only descriptions loaded at startup (~2% context). Full content loads when invoked |
@@ -281,11 +295,11 @@ This setup was built on Windows 11 with Git Bash. To adapt:
 **Q: Will this work with Claude Code on Mac/Linux?**
 A: Yes, with minor path changes (see "Adapting for Mac/Linux" above).
 
-**Q: Do I need all 29 skills?**
-A: No. Run the self-interview and Claude will remove skills that don't match your stack. The inventory is self-documenting — it only shows what's installed.
+**Q: Do I need all 97 skills?**
+A: No. Run the self-interview and Claude will remove skills that don't match your stack. The inventory is self-documenting — it only shows what's installed. Most users will actively use 15-25 skills depending on their focus.
 
 **Q: Will this slow down Claude Code?**
-A: No. Skills load descriptions only (~2% context). Full content loads on-demand. Hooks are fast scripts. The 76-line CLAUDE.md is smaller than most people's.
+A: No. Skills load descriptions only (~2% context). Full content loads on-demand. Hooks are fast scripts. The 77-line CLAUDE.md is smaller than most people's.
 
 **Q: How do I add new skills later?**
 A: Drop a `SKILL.md` into `~/.claude/skills/your-skill-name/`. It auto-appears in the inventory next session. No manual config needed.
