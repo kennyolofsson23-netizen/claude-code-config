@@ -107,13 +107,19 @@ claude mcp add -s user --transport http sentry https://mcp.sentry.dev/mcp
 
 ### 6. Configure settings.json
 
-The `settings.json` file is gitignored (contains API keys). You need to create it with the hook wiring. Start a Claude Code session and run:
+The `settings.json` file is gitignored (contains API keys). You need to create it with the hook wiring. Start a Claude Code session and paste this exact prompt:
 
 ```
-Read ~/.claude/hooks/ and wire all hooks into ~/.claude/settings.json following the pattern in the repo's hook files. Python hooks use the full Python path, JS hooks use node, bash hooks use bash.
+I just cloned the Claude Code God Setup into ~/.claude. I need you to set up my settings.json.
+
+1. Read every file in ~/.claude/hooks/ to see what hooks exist
+2. Detect my OS and find my Python, Node, and NPX paths (run "where python" or "which python3", "which node", "which npx")
+3. Create ~/.claude/settings.json that wires ALL hooks to the correct event triggers, using MY system's paths
+4. Make sure Python hooks use my full Python path, JS hooks use node, and bash hooks use bash
+5. Show me what you created and explain any warnings
 ```
 
-Or copy `settings.json` from someone who already has it configured and update the paths.
+This lets Claude do the hard work of detecting your system and wiring everything up.
 
 ### 7. Set API Keys (Optional)
 
@@ -133,17 +139,17 @@ Add to your `settings.json` under `"env"`:
 
 ### 8. Verify Installation
 
-Start a new Claude Code session and run:
+Start a **new** Claude Code session (close and reopen) and type:
 
 ```
 /qa-setup
 ```
 
-This tests every hook, skill, plugin, MCP, CLI, and rule.
+This runs a health check on every hook, skill, plugin, MCP, and CLI tool. Don't worry if a few things fail — most failures are optional tools you haven't installed yet. The important ones are hooks and core skills.
 
 ### 9. Personalize
 
-This is the most important step. Run the self-interview below.
+**This is the most important step.** The self-interview below lets Claude tailor everything to your experience level and stack. It takes about 5 minutes — just answer honestly, "I don't know" is a perfectly valid answer.
 
 ## Personalize: Self-Interview
 
@@ -152,43 +158,100 @@ This setup is a foundation — it needs to be adapted to YOU. Copy this prompt i
 ```
 I just installed the Claude Code God Setup from github.com/kennyolofsson23-netizen/claude-code-config.
 
-I need you to personalize it for me. Interview me with these questions ONE AT A TIME. Wait for my answer before asking the next question.
+I need you to personalize it for me. Interview me with these questions ONE AT A TIME.
+Wait for my answer before asking the next question.
+Keep questions conversational — if I don't understand something, explain it simply.
+It's totally fine if I answer "I don't know" or "whatever you recommend" — just pick sensible defaults for me.
 
-After all questions, summarize what you learned and show me the exact changes you'll make. Ask for my approval before writing anything.
+After all questions, summarize what you learned and show me the exact changes you'll make in plain language. Ask for my approval before writing anything.
 
 Questions:
 
-1. BACKGROUND: What's your background? (developer, designer, PM, founder, student, etc.) How many years of experience? What languages and frameworks do you know well vs learning?
+1. ABOUT YOU: What do you do? (developer, designer, student, founder, just curious, etc.) How much coding experience do you have — beginner, intermediate, or experienced?
 
-2. PROJECTS: What are you building right now? Describe your project(s) — tech stack, stage (idea/MVP/launched), what it does, who it's for.
+2. TECH STACK: What languages/frameworks do you use or want to learn? (e.g., Python, JavaScript, React, Node.js — or "I'm not sure yet")
 
-3. TEAM: Do you work solo or with a team? If team, what's their experience level? Will they also use this Claude setup?
+3. PROJECTS: What are you building or planning to build? Even a rough idea is fine. (e.g., "a website for my business", "learning to code", "a SaaS app")
 
-4. FRUSTRATIONS: What's your biggest frustration with AI coding assistants? What specific mistakes does Claude make that waste your time? Give examples if you can.
+4. SOLO OR TEAM: Do you work alone or with others?
 
-5. QUALITY vs SPEED: How do you feel about code quality vs shipping speed? Do you want Claude to be thorough and slow, or fast and pragmatic? What's your test coverage target?
+5. WHAT ANNOYS YOU: Have you used AI coding tools before? What went wrong or annoyed you? (e.g., "it kept making stuff up", "it was too slow", "never used one")
 
-6. DESIGN: Do you use Figma or other design tools, or do you design in code? How important is UI/UX quality to you?
+6. SPEED vs QUALITY: When Claude writes code for you, should it prioritize being fast and scrappy, or thorough and careful? (Most people start with "fast" and tighten up later — that's fine)
 
-7. DEPLOYMENT: What's your deployment setup? (Vercel, AWS, Railway, Docker, etc.) How much deploy autonomy should Claude have — should it auto-deploy after tests pass, or always ask first?
+7. DESIGN: Do you care about how things look? Will you be building user interfaces, or mostly backend/data work?
 
-8. TOOLS: What project management and communication tools do you use? (Linear, Jira, Notion, Slack, Discord, GitHub Issues, or just todo.md?)
+8. DEPLOYMENT: Where do you host your projects? (Vercel, AWS, Netlify, Railway, "I don't know yet" — all valid answers)
 
-9. TESTING: What's your testing philosophy? Unit-heavy? Integration? E2E? Property-based? What coverage target?
+9. GOALS: What's the dream? (Learn to code, ship a product, start a business, get a job, build something cool for fun?)
 
-10. SCHEDULE: What timezone are you in? When do you typically code? (Full-time, evenings, weekends?)
+10. ENVIRONMENT: What computer are you on? (Windows/Mac/Linux) — Claude will auto-detect the rest
 
-11. GOALS: What's your end goal? (Learning, shipping a product, building a business, financial independence, career growth, fun?)
+11. SKILL FOCUS: Which of these areas interest you? Pick all that apply:
+    - Web development (frontend/backend)
+    - Mobile apps
+    - APIs and backend services
+    - DevOps and infrastructure
+    - Data science / ML
+    - Marketing and content creation
+    - SEO (search engine optimization)
+    - Security
+    - Design and UI/UX
 
-12. ENVIRONMENT: What OS are you on? (Windows/Mac/Linux) What shell? Any special dev environment setup?
-
-Based on my answers, update:
-- ~/.claude/CLAUDE.md — adapt the instructions to my workflow and priorities
-- ~/.claude/rules/environment.md — my specific OS, paths, tools
-- Memory files — save my profile for future sessions
-- Remove any skills/rules/hooks that don't apply to my stack
-- Add any project-specific rules I need
+Based on my answers:
+1. Update ~/.claude/CLAUDE.md to match my workflow and skill level
+2. Update ~/.claude/rules/environment.md with my OS and correct paths (auto-detect what you can)
+3. Save my profile to memory so you remember me in future sessions
+4. Tell me which skills/agents I probably won't need (see the "What to Customize" section in the README) — but don't delete anything without asking me first
+5. If I'm a beginner, simplify CLAUDE.md — remove jargon, lower the test coverage target, add more explanatory comments
+6. Add any project-specific rules I need
 ```
+
+## What to Customize
+
+### By Role
+
+| If you are a... | Keep these | Consider removing | Active skills |
+|-----------------|-----------|-------------------|:---:|
+| **Frontend dev** | react-best-practices, tailwind-v4-shadcn, composition-patterns, performance, webapp-testing, ui-ux-pro-max plugin | All SEO/GEO skills, email-marketing-bible, claude-ads, postgres-best-practices | ~20 |
+| **Backend dev** | postgres-best-practices, security-audit, owasp-llm-top10, property-based-testing, ddd | All GEO skills, frontend-design plugin, instagram-thread-carousel, postnitro-carousel | ~18 |
+| **Fullstack dev** | Keep most, remove what you don't use after 2 weeks | GEO/SEO suite (unless doing marketing too) | ~35 |
+| **Founder/indie hacker** | Keep everything — you'll use more than you think | Nothing yet — revisit after 2 weeks | ~50+ |
+| **Marketer/content** | All SEO/GEO, content-to-social, create-viral-content, email-marketing-bible, claude-ads, social-content | ddd, sdd, property-based-testing, postgres-best-practices | ~30 |
+| **Student** | best-practices, code-review, qa, security-audit, react-best-practices or postgres-best-practices | Marketing suite, GEO suite, ad platforms, email-marketing-bible | ~12 |
+
+### What You MUST Customize
+
+| File | What to change | Why |
+|------|---------------|-----|
+| `rules/environment.md` | Your OS, Python/Node paths, shell | Hooks use these paths |
+| `CLAUDE.md` | Your workflow preferences, test targets | This is YOUR instruction set |
+| `hooks/auto-format.py` lines 15-17 | Python/Node paths for your OS | Auto-format will fail otherwise |
+| `settings.json` | Hook commands, API keys, MCP config | Contains all wiring |
+
+### What You Can Leave Alone
+
+- **`skills/`** — unused skills cost nothing (descriptions only, ~2% context)
+- **`hooks/`** — all hooks are useful regardless of stack
+- **`agents/`** — agents only activate when invoked
+- **`docs/learnings.md`** — useful patterns for everyone
+
+## Troubleshooting
+
+### Windows
+- **MCPs fail to start**: Use the `cmd /c` wrapper for all MCP commands (see step 5 above)
+- **Python hooks fail**: Verify the full Python path in `settings.json` matches your install — run `where python` to find it
+- **Git Bash can't find node/npm**: Use full paths like `"/c/Program Files/nodejs/node.exe"` or add to your `.bashrc`
+
+### Mac/Linux
+- **`python` not found**: Use `python3` everywhere — update `rules/environment.md`, `hooks/auto-format.py` lines 15-17, and `settings.json`
+- **Permission denied on hooks**: Run `chmod +x hooks/*.sh scripts/*.sh`
+- **NPX commands hang**: Clear the cache with `npx clear-npx-cache` and retry
+
+### General
+- **Plugin install fails**: Make sure you've added the marketplace first (`claude plugin marketplace add ...`), then install the plugin
+- **`/qa-setup` reports failures**: Read the specific failure — most are missing CLI tools (install them) or missing API keys (optional — skip if you don't need that feature)
+- **Which API keys are required?**: None are strictly required. `GEMINI_API_KEY` enables AI image generation. `STRIPE_API_KEY` enables Stripe CLI. `ELEVENLABS_API_KEY` enables voiceover. Everything else works without keys
 
 ## Architecture
 
@@ -296,7 +359,7 @@ This setup was built on Windows 11 with Git Bash. To adapt:
 A: Yes, with minor path changes (see "Adapting for Mac/Linux" above).
 
 **Q: Do I need all 97 skills?**
-A: No. Run the self-interview and Claude will remove skills that don't match your stack. The inventory is self-documenting — it only shows what's installed. Most users will actively use 15-25 skills depending on their focus.
+A: No. See the "What to Customize" table for role-based guidance. Most users actively use 12-35 skills. Unused skills cost nothing — they're descriptions only (~2% context). Run the self-interview and Claude will tailor things to your stack.
 
 **Q: Will this slow down Claude Code?**
 A: No. Skills load descriptions only (~2% context). Full content loads on-demand. Hooks are fast scripts. The 77-line CLAUDE.md is smaller than most people's.
