@@ -10,6 +10,14 @@ function editInput(filePath) {
   return { tool_input: { file_path: filePath } };
 }
 
+/** Helper: create a package.json with test runner deps so the hook doesn't skip */
+function createPackageJson(dir, deps = {}) {
+  fs.writeFileSync(
+    path.join(dir, "package.json"),
+    JSON.stringify({ name: "test", devDependencies: deps })
+  );
+}
+
 describe("auto-test.js", () => {
   // ── Early-exit paths ──────────────────────────────────────────────────
 
@@ -76,6 +84,7 @@ describe("auto-test.js", () => {
 
     before(() => {
       tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "auto-test-discover-"));
+      createPackageJson(tmpDir, { jest: "^29.0.0" });
     });
 
     after(() => {
@@ -163,6 +172,7 @@ describe("auto-test.js", () => {
 
     before(() => {
       tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "auto-test-runner-"));
+      createPackageJson(tmpDir, { jest: "^29.0.0", vitest: "^1.0.0" });
     });
 
     after(() => {
@@ -206,6 +216,7 @@ describe("auto-test.js", () => {
 
     before(() => {
       tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "auto-test-format-"));
+      createPackageJson(tmpDir, { jest: "^29.0.0" });
     });
 
     after(() => {

@@ -33,13 +33,11 @@ const inTmux = !!process.env.TMUX;
 const inScreen = !!process.env.STY;
 
 if (!inTmux && !inScreen) {
-  console.log(
-    JSON.stringify({
-      blocked: true,
-      reason: "Dev server commands should run inside tmux or screen to prevent orphaned processes. Start a tmux session first or run the command in the background.",
-    })
+  // Warn but don't block — beginners may not have tmux/screen installed
+  process.stderr.write(
+    "WARNING: Dev server commands can leave orphaned processes. Consider running inside tmux/screen or use run_in_background.\n"
   );
-  process.exit(1);
+  process.exit(0);
 }
 
 console.log(JSON.stringify({ allowed: true, multiplexer: inTmux ? "tmux" : "screen" }));

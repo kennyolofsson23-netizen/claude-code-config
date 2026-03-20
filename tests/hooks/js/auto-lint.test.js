@@ -83,6 +83,11 @@ describe("auto-lint.js", () => {
 
     before(() => {
       tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "auto-lint-eslint-"));
+      // package.json with eslint so the hook doesn't skip
+      fs.writeFileSync(
+        path.join(tmpDir, "package.json"),
+        JSON.stringify({ name: "test", devDependencies: { eslint: "^9.0.0" } })
+      );
       // Minimal flat ESLint config that flags `no-unused-vars`
       fs.writeFileSync(
         path.join(tmpDir, "eslint.config.mjs"),
@@ -174,6 +179,11 @@ describe("auto-lint.js", () => {
 
     before(() => {
       rootDir = fs.mkdtempSync(path.join(os.tmpdir(), "auto-lint-walkup-"));
+      // package.json with eslint so the hook doesn't skip
+      fs.writeFileSync(
+        path.join(rootDir, "package.json"),
+        JSON.stringify({ name: "test", devDependencies: { eslint: "^9.0.0" } })
+      );
       // Put eslint config at root, file is nested 3 levels deep
       fs.writeFileSync(
         path.join(rootDir, "eslint.config.mjs"),

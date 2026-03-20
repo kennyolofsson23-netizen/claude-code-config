@@ -44,19 +44,36 @@ Here's what I already have installed:
 
 Here's the plan — do each step one at a time, explain what you're doing, and wait for my OK before moving to the next:
 
-1. BACKUP: Check if I already have a ~/.claude folder with any custom config. If so, back it up to ~/.claude-backup. If it's just the default Claude Code folder, skip this.
+1. BACKUP & CLONE: ~/.claude already exists (Claude Code creates it). You CANNOT clone into it directly.
+   Instead:
+   a. Clone the repo to a temp folder:
+      git clone https://github.com/kennyolofsson23-netizen/claude-code-config.git /tmp/claude-god-setup
+   b. Back up my existing ~/.claude to ~/.claude-backup:
+      cp -r ~/.claude ~/.claude-backup
+   c. Copy ALL files from the cloned repo into ~/.claude (overwrite, but preserve existing files like plugins/, .mcp.json, settings.json, settings.local.json):
+      rsync -av --exclude='.git' /tmp/claude-god-setup/ ~/.claude/
+      (If rsync isn't available, use: cp -rn /tmp/claude-god-setup/* ~/.claude/ && cp -rn /tmp/claude-god-setup/.* ~/.claude/ 2>/dev/null)
+   d. Initialize git tracking in ~/.claude:
+      cd ~/.claude && git init && git remote add origin https://github.com/kennyolofsson23-netizen/claude-code-config.git
+   e. Clean up:
+      rm -rf /tmp/claude-god-setup
 
-2. CLONE: Clone the repo:
-   git clone https://github.com/kennyolofsson23-netizen/claude-code-config.git ~/.claude
-
-3. DEPENDENCIES: Check what I already have installed (node, npm, python, pip). Install what's missing:
+2. DEPENDENCIES: Check what I already have installed (node, npm, python, pip). Install what's missing:
    - npm install -g prettier
    - pip install black
    Skip optional tools (pgcli, stripe, uipro-cli) — I can add them later.
 
-4. PLUGINS: Install the Claude Code plugins one by one. If any fail, tell me what went wrong and skip it — don't stop the whole process:
+3. PLUGINS: These are REAL Claude Code CLI commands — they work.
+   Install the Claude Code plugins one by one. If any fail, tell me what went wrong and skip it — don't stop the whole process:
+
+   First add ALL marketplaces (including the official one — it's NOT pre-installed):
+   - claude plugin marketplace add anthropics/claude-plugins-official
    - claude plugin marketplace add obra/superpowers-marketplace
    - claude plugin marketplace add nextlevelbuilder/ui-ux-pro-max-skill
+   - claude plugin marketplace add mvanhorn/last30days-skill
+   - claude plugin marketplace add accesslint/claude-marketplace
+
+   Then install plugins:
    - claude plugin install feature-dev@claude-plugins-official
    - claude plugin install frontend-design@claude-plugins-official
    - claude plugin install code-review@claude-plugins-official
@@ -66,22 +83,24 @@ Here's the plan — do each step one at a time, explain what you're doing, and w
    - claude plugin install ralph-loop@claude-plugins-official
    - claude plugin install superpowers@superpowers-marketplace
    - claude plugin install ui-ux-pro-max@ui-ux-pro-max-skill
+   - claude plugin install last30days@last30days-skill
+   - claude plugin install accesslint@accesslint
 
-5. MCPs: Detect my OS and install the MCP servers with the right syntax:
+4. MCPs: Detect my OS and install the MCP servers with the right syntax:
    - context7 (documentation lookup)
    - playwright (browser testing)
    - sequential-thinking (reasoning)
    - sentry (error tracking, HTTP transport)
    On Windows use the "cmd /c" wrapper. On Mac/Linux use npx directly.
 
-6. SETTINGS: Read every file in ~/.claude/hooks/ and create my settings.json:
+5. SETTINGS: Read every file in ~/.claude/hooks/ and create my settings.json:
    - Auto-detect my Python, Node, and NPX paths
    - Wire ALL hooks to the correct event triggers using MY paths
    - Show me what you created
 
-7. VERIFY: Tell me to close this session and reopen Claude Code, then run /qa-setup. Explain that some failures are normal (optional tools).
+6. VERIFY: Tell me to close this session and reopen Claude Code, then run /qa-setup. Explain that some failures are normal (optional tools).
 
-8. PERSONALIZE: After verification, run the self-interview from the README to tailor everything to me.
+7. PERSONALIZE: After verification, run the self-interview from the README to tailor everything to me.
 
 Important rules:
 - Explain everything like I'm 5
@@ -98,18 +117,28 @@ That's it — Claude handles the rest. If you prefer to install manually, follow
 - Git, Node.js 18+, Python 3.10+
 - GitHub CLI (`gh`) authenticated
 
-### 1. Backup Your Existing Config (if any)
+### 1. Backup & Clone
+
+`~/.claude` already exists (Claude Code creates it automatically). You can't clone directly into it.
 
 ```bash
-# Skip this if you're starting fresh
-mv ~/.claude ~/.claude-backup
+# Clone to a temp folder
+git clone https://github.com/kennyolofsson23-netizen/claude-code-config.git /tmp/claude-god-setup
+
+# Back up your existing config
+cp -r ~/.claude ~/.claude-backup
+
+# Copy setup files into ~/.claude (won't overwrite your settings.json, plugins/, etc.)
+rsync -av --exclude='.git' /tmp/claude-god-setup/ ~/.claude/
+
+# Set up git tracking for updates
+cd ~/.claude && git init && git remote add origin https://github.com/kennyolofsson23-netizen/claude-code-config.git
+
+# Clean up
+rm -rf /tmp/claude-god-setup
 ```
 
-### 2. Clone
-
-```bash
-git clone https://github.com/kennyolofsson23-netizen/claude-code-config.git ~/.claude
-```
+> **Note:** If you don't have `rsync`, use: `cp -rn /tmp/claude-god-setup/* ~/.claude/ && cp -rn /tmp/claude-god-setup/.* ~/.claude/ 2>/dev/null`
 
 ### 3. Install Dependencies
 
@@ -129,10 +158,15 @@ winget install Stripe.StripeCli
 
 ### 4. Install Plugins
 
+> These are real Claude Code CLI commands (`claude plugin --help` to verify). If your Claude says they don't exist, update Claude Code to the latest version.
+
 ```bash
-# Marketplaces
+# Add ALL marketplaces first (including official — it's NOT pre-installed)
+claude plugin marketplace add anthropics/claude-plugins-official
 claude plugin marketplace add obra/superpowers-marketplace
 claude plugin marketplace add nextlevelbuilder/ui-ux-pro-max-skill
+claude plugin marketplace add mvanhorn/last30days-skill
+claude plugin marketplace add accesslint/claude-marketplace
 
 # Official Anthropic plugins
 claude plugin install feature-dev@claude-plugins-official
@@ -146,6 +180,8 @@ claude plugin install ralph-loop@claude-plugins-official
 # Community plugins
 claude plugin install superpowers@superpowers-marketplace
 claude plugin install ui-ux-pro-max@ui-ux-pro-max-skill
+claude plugin install last30days@last30days-skill
+claude plugin install accesslint@accesslint
 ```
 
 ### 5. Add MCPs
@@ -285,10 +321,9 @@ Based on my answers:
 
 | File | What to change | Why |
 |------|---------------|-----|
-| `rules/environment.md` | Your OS, Python/Node paths, shell | Hooks use these paths |
+| `settings.json` | Hook commands, API keys, MCP config | Contains all wiring — created during install |
 | `CLAUDE.md` | Your workflow preferences, test targets | This is YOUR instruction set |
-| `hooks/auto-format.py` lines 15-17 | Python/Node paths for your OS | Auto-format will fail otherwise |
-| `settings.json` | Hook commands, API keys, MCP config | Contains all wiring |
+| `rules/environment.md` | Already generic — personalize step adds your specifics | Auto-detects OS and paths |
 
 ### What You Can Leave Alone
 
@@ -310,6 +345,8 @@ Based on my answers:
 - **NPX commands hang**: Clear the cache with `npx clear-npx-cache` and retry
 
 ### General
+- **"Can't clone into ~/.claude — folder already exists"**: This is expected. `~/.claude` is created automatically by Claude Code. Follow step 1 above — clone to a temp folder, then copy files over
+- **"Plugin commands don't exist"**: They do — `claude plugin` is a real CLI command. Run `claude plugin --help` to verify. If it's not there, update Claude Code: `claude update`
 - **Plugin install fails**: Make sure you've added the marketplace first (`claude plugin marketplace add ...`), then install the plugin
 - **`/qa-setup` reports failures**: Read the specific failure — most are missing CLI tools (install them) or missing API keys (optional — skip if you don't need that feature)
 - **Which API keys are required?**: None are strictly required. `GEMINI_API_KEY` enables AI image generation. `STRIPE_API_KEY` enables Stripe CLI. `ELEVENLABS_API_KEY` enables voiceover. Everything else works without keys
@@ -396,23 +433,10 @@ Built-in content factory — research, create, and distribute:
 
 ## Adapting for Mac/Linux
 
-This setup was built on Windows 11 with Git Bash. To adapt:
+This setup now auto-detects paths and works cross-platform. The only manual step:
 
-1. **`rules/environment.md`**: Change paths to your OS equivalents
-   - Python: `python3` or `python`
-   - Node: `node` (usually in PATH on Mac/Linux)
-   - Remove the Stripe WinGet PATH workaround
-
-2. **`hooks/auto-format.py`**: Change line 15-17 to your Python/Node/NPX paths
-   ```python
-   PYTHON = "python3"
-   NODE = "node"
-   NPX = "npx"
-   ```
-
-3. **MCPs**: Remove `cmd /c` wrapper from MCP commands (see Mac/Linux install above)
-
-4. **settings.json**: Update hook commands from `"C:\\Users\\...\\python.exe"` to `"python3"`
+1. **MCPs**: Use the Mac/Linux MCP commands (no `cmd /c` wrapper) — see install step 5 above
+2. **`settings.json`**: Update hook commands from Windows Python path to `"python3"` — the install prompt handles this automatically
 
 ## FAQ
 
@@ -427,6 +451,9 @@ A: No. Skills load descriptions only (~2% context). Full content loads on-demand
 
 **Q: How do I add new skills later?**
 A: Drop a `SKILL.md` into `~/.claude/skills/your-skill-name/`. It auto-appears in the inventory next session. No manual config needed.
+
+**Q: Is it safe to clone this into ~/.claude?**
+A: `~/.claude` is Claude Code's config folder. This repo only adds files (skills, hooks, agents, rules) — it doesn't modify Claude Code itself. Your `settings.json`, `plugins/`, and `.mcp.json` are gitignored and won't be overwritten. You can always restore from `~/.claude-backup`. Review the repo contents before installing if you want — it's all plaintext markdown and scripts.
 
 **Q: How do I update when this repo gets new features?**
 A: `cd ~/.claude && git pull`. New skills, hooks, and commands will auto-appear. Check the changelog for any settings.json changes.

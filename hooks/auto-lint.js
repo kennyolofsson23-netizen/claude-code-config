@@ -53,9 +53,25 @@ function findConfigDir(startDir, patterns, maxLevels = 15) {
 const fileDir = path.dirname(filePath);
 const result = { lint: "pass", typeErrors: [], eslintErrors: [] };
 
+/**
+ * Check if an npm package is installed in the project (not via npx auto-install).
+ * Prevents npx from hanging while trying to download tsc/eslint for projects that don't use them.
+ */
+function isPackageInstalled(projectDir, packageName) {
+  try {
+    const pkgPath = path.join(projectDir, "package.json");
+    if (!fs.existsSync(pkgPath)) return false;
+    const pkg = JSON.parse(fs.readFileSync(pkgPath, "utf8"));
+    const deps = { ...pkg.dependencies, ...pkg.devDependencies };
+    return !!deps[packageName];
+  } catch (_) {
+    return false;
+  }
+}
+
 // ── TypeScript check ──────────────────────────────────────────────────────
 const tsconfigDir = findConfigDir(fileDir, ["tsconfig.json"]);
-if (tsconfigDir) {
+if (tsconfigDir && isPackageInstalled(tsconfigDir, "typescript")) {
   try {
     execFileSync(NPX, ["tsc", "--noEmit", "--pretty"], {
       cwd: tsconfigDir,
@@ -88,7 +104,7 @@ const eslintDir = findConfigDir(fileDir, [
   "eslint.config.cjs",
   "eslint.config.ts",
 ]);
-if (eslintDir) {
+if (eslintDir && isPackageInstalled(eslintDir, "eslint")) {
   try {
     execFileSync(NPX, ["eslint", "--no-warn-ignored", filePath], {
       cwd: eslintDir,

@@ -39,11 +39,59 @@ const runners = {
 };
 
 const runner = runners[ext];
+
+// Check if the test runner is available in the project before running
+// This prevents noisy failures when vitest/jest/pytest aren't installed
+function isRunnerAvailable(cmd, cwd) {
+  // For npx-based runners, check if the package exists in node_modules or package.json
+  if (cmd === "npx") {
+    const pkgJsonPath = path.join(cwd, "package.json");
+    if (!fs.existsSync(pkgJsonPath)) return false;
+    try {
+      const pkg = JSON.parse(fs.readFileSync(pkgJsonPath, "utf8"));
+      const deps = { ...pkg.dependencies, ...pkg.devDependencies };
+      // Check for vitest or jest depending on runner args
+      const runnerName = runner.args[0]; // "vitest" or "jest"
+      return !!deps[runnerName];
+    } catch (_) {
+      return false;
+    }
+  }
+  // For python/go/rs, just check if the command exists
+  try {
+    execFileSync(process.platform === "win32" ? "where" : "which", [cmd], {
+      stdio: "pipe",
+      timeout: 3000,
+    });
+    return true;
+  } catch (_) {
+    return false;
+  }
+}
+
+// Find project root (nearest package.json or git root)
+let projectRoot = process.cwd();
+let checkDir = dir;
+for (let i = 0; i < 10; i++) {
+  if (fs.existsSync(path.join(checkDir, "package.json"))) {
+    projectRoot = checkDir;
+    break;
+  }
+  const parent = path.dirname(checkDir);
+  if (parent === checkDir) break;
+  checkDir = parent;
+}
+
+if (!isRunnerAvailable(runner.cmd, projectRoot)) {
+  // Silently skip — runner not installed in this project
+  process.exit(0);
+}
+
 try {
   const output = execFileSync(runner.cmd, runner.args, {
     stdio: "pipe",
     timeout: 30000,
-    cwd: process.cwd(),
+    cwd: projectRoot,
     shell: true,
   });
   console.log(JSON.stringify({ tests: "pass", file: testFile, output: output.toString().slice(-300) }));

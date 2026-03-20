@@ -35,135 +35,134 @@ describe("block-dev-server.js", () => {
     assert.equal(JSON.parse(stdout).allowed, true);
   });
 
-  // --- Blocked: dev server without tmux/screen ---
+  // --- Warns: dev server without tmux/screen (exit 0 with stderr warning) ---
 
-  it("blocks npm run dev without multiplexer", async () => {
-    const { exitCode, stdout } = await runHook(
+  it("warns on npm run dev without multiplexer", async () => {
+    const { exitCode, stderr } = await runHook(
       "block-dev-server.js",
       { tool_input: { command: "npm run dev" } },
       { env: { TMUX: "", STY: "" } }
     );
-    assert.equal(exitCode, 1);
-    const out = JSON.parse(stdout);
-    assert.equal(out.blocked, true);
-    assert.match(out.reason, /tmux|screen/i);
+    assert.equal(exitCode, 0);
+    assert.match(stderr, /WARNING.*orphaned|tmux|screen|run_in_background/i);
   });
 
-  it("blocks npm start without multiplexer", async () => {
-    const { exitCode, stdout } = await runHook(
+  it("warns on npm start without multiplexer", async () => {
+    const { exitCode, stderr } = await runHook(
       "block-dev-server.js",
       { tool_input: { command: "npm start" } },
       { env: { TMUX: "", STY: "" } }
     );
-    assert.equal(exitCode, 1);
+    assert.equal(exitCode, 0);
+    assert.match(stderr, /WARNING/i);
   });
 
-  it("blocks yarn dev without multiplexer", async () => {
+  it("warns on yarn dev without multiplexer", async () => {
     const { exitCode } = await runHook(
       "block-dev-server.js",
       { tool_input: { command: "yarn dev" } },
       { env: { TMUX: "", STY: "" } }
     );
-    assert.equal(exitCode, 1);
+    assert.equal(exitCode, 0);
   });
 
-  it("blocks pnpm dev without multiplexer", async () => {
+  it("warns on pnpm dev without multiplexer", async () => {
     const { exitCode } = await runHook(
       "block-dev-server.js",
       { tool_input: { command: "pnpm dev" } },
       { env: { TMUX: "", STY: "" } }
     );
-    assert.equal(exitCode, 1);
+    assert.equal(exitCode, 0);
   });
 
-  it("blocks next dev without multiplexer", async () => {
+  it("warns on next dev without multiplexer", async () => {
     const { exitCode } = await runHook(
       "block-dev-server.js",
       { tool_input: { command: "next dev" } },
       { env: { TMUX: "", STY: "" } }
     );
-    assert.equal(exitCode, 1);
+    assert.equal(exitCode, 0);
   });
 
-  it("blocks vite without multiplexer", async () => {
+  it("warns on vite without multiplexer", async () => {
     const { exitCode } = await runHook(
       "block-dev-server.js",
       { tool_input: { command: "vite" } },
       { env: { TMUX: "", STY: "" } }
     );
-    assert.equal(exitCode, 1);
+    assert.equal(exitCode, 0);
   });
 
-  it("blocks webpack serve without multiplexer", async () => {
+  it("warns on webpack serve without multiplexer", async () => {
     const { exitCode } = await runHook(
       "block-dev-server.js",
       { tool_input: { command: "webpack serve" } },
       { env: { TMUX: "", STY: "" } }
     );
-    assert.equal(exitCode, 1);
+    assert.equal(exitCode, 0);
   });
 
-  it("blocks nodemon without multiplexer", async () => {
+  it("warns on nodemon without multiplexer", async () => {
     const { exitCode } = await runHook(
       "block-dev-server.js",
       { tool_input: { command: "nodemon server.js" } },
       { env: { TMUX: "", STY: "" } }
     );
-    assert.equal(exitCode, 1);
+    assert.equal(exitCode, 0);
   });
 
-  it("blocks uvicorn without multiplexer", async () => {
+  it("warns on uvicorn without multiplexer", async () => {
     const { exitCode } = await runHook(
       "block-dev-server.js",
       { tool_input: { command: "uvicorn main:app --reload" } },
       { env: { TMUX: "", STY: "" } }
     );
-    assert.equal(exitCode, 1);
+    assert.equal(exitCode, 0);
   });
 
-  it("blocks flask run without multiplexer", async () => {
+  it("warns on flask run without multiplexer", async () => {
     const { exitCode } = await runHook(
       "block-dev-server.js",
       { tool_input: { command: "flask run" } },
       { env: { TMUX: "", STY: "" } }
     );
-    assert.equal(exitCode, 1);
+    assert.equal(exitCode, 0);
   });
 
-  it("blocks python manage.py runserver without multiplexer", async () => {
+  it("warns on python manage.py runserver without multiplexer", async () => {
     const { exitCode } = await runHook(
       "block-dev-server.js",
       { tool_input: { command: "python manage.py runserver" } },
       { env: { TMUX: "", STY: "" } }
     );
-    assert.equal(exitCode, 1);
+    assert.equal(exitCode, 0);
   });
 
-  it("blocks cargo watch without multiplexer", async () => {
+  it("warns on cargo watch without multiplexer", async () => {
     const { exitCode } = await runHook(
       "block-dev-server.js",
       { tool_input: { command: "cargo watch -x run" } },
       { env: { TMUX: "", STY: "" } }
     );
-    assert.equal(exitCode, 1);
+    assert.equal(exitCode, 0);
   });
 
-  it("blocks ts-node-dev without multiplexer", async () => {
+  it("warns on ts-node-dev without multiplexer", async () => {
     const { exitCode } = await runHook(
       "block-dev-server.js",
       { tool_input: { command: "ts-node-dev src/index.ts" } },
       { env: { TMUX: "", STY: "" } }
     );
-    assert.equal(exitCode, 1);
+    assert.equal(exitCode, 0);
   });
 
-  it("blocks bun dev without multiplexer", async () => {
+  it("warns on bun dev without multiplexer", async () => {
     const { exitCode } = await runHook(
       "block-dev-server.js",
       { tool_input: { command: "bun dev" } },
       { env: { TMUX: "", STY: "" } }
     );
-    assert.equal(exitCode, 1);
+    assert.equal(exitCode, 0);
   });
 
   // --- Allowed: dev server inside tmux ---
@@ -196,12 +195,12 @@ describe("block-dev-server.js", () => {
 
   // --- Case insensitivity ---
 
-  it("blocks case-insensitive matches (NPM RUN DEV)", async () => {
+  it("warns on case-insensitive matches (NPM RUN DEV)", async () => {
     const { exitCode } = await runHook(
       "block-dev-server.js",
       { tool_input: { command: "NPM RUN DEV" } },
       { env: { TMUX: "", STY: "" } }
     );
-    assert.equal(exitCode, 1);
+    assert.equal(exitCode, 0);
   });
 });

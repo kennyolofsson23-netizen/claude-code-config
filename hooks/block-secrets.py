@@ -20,7 +20,7 @@ BLOCKED_FILES = {
 if basename in BLOCKED_FILES:
     print(
         f"BLOCKED: Cannot write to '{basename}'. "
-        f"Secrets and env files must be edited manually by Kenny.",
+        f"Secrets and env files must be edited manually by the user.",
         file=sys.stderr,
     )
     sys.exit(2)

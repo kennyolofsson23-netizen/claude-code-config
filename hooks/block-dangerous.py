@@ -38,7 +38,7 @@ for pattern in BLOCKED_PATTERNS:
     if pattern in cmd_lower:
         print(
             f"BLOCKED: '{pattern}' detected. This is a dangerous/destructive command. "
-            f"Ask Kenny for explicit confirmation before proceeding.",
+            f"Ask the user for explicit confirmation before proceeding.",
             file=sys.stderr,
         )
         sys.exit(2)
@@ -46,7 +46,7 @@ for pattern in BLOCKED_PATTERNS:
 for pattern in WARN_PATTERNS:
     if pattern in cmd_lower:
         print(
-            f"WARNING: '{pattern}' detected. Make sure Kenny has confirmed this push.",
+            f"WARNING: '{pattern}' detected. Make sure the user has confirmed this push.",
             file=sys.stderr,
         )
         # Exit 0 — allow but warn
@@ -56,7 +56,7 @@ for pattern in WARN_PATTERNS:
 if "git branch" in cmd_lower and "-D" in command:
     print(
         "BLOCKED: 'git branch -D' detected. This is a dangerous/destructive command. "
-        "Ask Kenny for explicit confirmation before proceeding.",
+        "Ask the user for explicit confirmation before proceeding.",
         file=sys.stderr,
     )
     sys.exit(2)
@@ -64,7 +64,7 @@ if "git branch" in cmd_lower and "-D" in command:
 # Block any force push variant (git push ... -f or --force anywhere)
 if "git push" in cmd_lower and ("-f" in cmd_lower.split() or "--force" in cmd_lower):
     print(
-        "BLOCKED: Force push detected. Ask Kenny for explicit confirmation.",
+        "BLOCKED: Force push detected. Ask the user for explicit confirmation.",
         file=sys.stderr,
     )
     sys.exit(2)

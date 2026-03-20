@@ -13,9 +13,12 @@ if not file_path or not os.path.isfile(file_path):
     sys.exit(0)
 
 ext = os.path.splitext(file_path)[1].lower()
-PYTHON = r"C:\Users\Kenny\AppData\Local\Programs\Python\Python311\python.exe"
-NODE = r"C:\Program Files\nodejs\node.exe"
-NPX = r"C:\Program Files\nodejs\npx.cmd"
+
+import shutil
+
+PYTHON = shutil.which("python3") or shutil.which("python") or "python"
+NODE = shutil.which("node") or "node"
+NPX = shutil.which("npx") or ("npx.cmd" if os.name == "nt" else "npx")
 
 try:
     if ext == ".py":

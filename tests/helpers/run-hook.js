@@ -11,9 +11,23 @@ const path = require("path");
 
 const HOOKS_DIR = path.resolve(__dirname, "../../hooks");
 
-const PYTHON =
-  process.env.PYTHON_PATH ||
-  "C:\\Users\\Kenny\\AppData\\Local\\Programs\\Python\\Python311\\python.exe";
+const { execFileSync } = require("child_process");
+
+function findPython() {
+  if (process.env.PYTHON_PATH) return process.env.PYTHON_PATH;
+  // Auto-detect python path
+  for (const cmd of ["python3", "python"]) {
+    try {
+      const which = process.platform === "win32" ? "where" : "which";
+      const result = execFileSync(which, [cmd], { stdio: "pipe", timeout: 3000 });
+      const p = result.toString().trim().split(/\r?\n/)[0];
+      if (p) return p;
+    } catch (_) {}
+  }
+  return "python";
+}
+
+const PYTHON = findPython();
 
 /**
  * @param {string} hookFile - filename inside hooks/ (e.g. "commit-guard.js" or "block-dangerous.py")

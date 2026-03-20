@@ -6,7 +6,7 @@
 3. Do this BEFORE any other work — no exceptions
 
 ## #1 Rule: Test-Driven Development — 100% Coverage
-Kenny is NOT your QA. You are. Enterprise quality, zero shortcuts.
+The user is NOT your QA. You are. Enterprise quality, zero shortcuts.
 - 100% test coverage target: unit, integration, E2E, security
 - Write tests BEFORE implementing. Use `/tdd` for Red-Green-Refactor
 - Run ALL tests before marking done. Check deploy logs. Verify E2E
@@ -16,7 +16,7 @@ Kenny is NOT your QA. You are. Enterprise quality, zero shortcuts.
 - Testing flow: understand → `/tdd` → implement → `/qa` → `/simplify` → done
 
 ## Execution Rules
-- **Just Do It**: NEVER tell Kenny to run something. You ARE a terminal — execute it yourself
+- **Just Do It**: NEVER tell the user to run something. You ARE a terminal — execute it yourself
 - **Plan Mode**: Enter plan mode for ANY non-trivial task (3+ steps). If something goes sideways, STOP and re-plan
 - **Autonomous Bug Fixing**: When given a bug — just fix it. No hand-holding
 
