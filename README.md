@@ -31,7 +31,68 @@ This setup fixes all of that:
 
 ## Quick Start
 
-### Prerequisites
+### One-Prompt Install (Recommended for Beginners)
+
+If you have **Claude Code** and **Git** installed, paste this into a Claude Code session and let Claude do everything:
+
+```
+I need you to install Kenny's Claude Code God Setup for me. I'm a complete beginner — walk me through everything step by step. Don't assume I know anything.
+
+Here's what I already have installed:
+- Claude Code (this tool)
+- Git Bash
+
+Here's the plan — do each step one at a time, explain what you're doing, and wait for my OK before moving to the next:
+
+1. BACKUP: Check if I already have a ~/.claude folder with any custom config. If so, back it up to ~/.claude-backup. If it's just the default Claude Code folder, skip this.
+
+2. CLONE: Clone the repo:
+   git clone https://github.com/kennyolofsson23-netizen/claude-code-config.git ~/.claude
+
+3. DEPENDENCIES: Check what I already have installed (node, npm, python, pip). Install what's missing:
+   - npm install -g prettier
+   - pip install black
+   Skip optional tools (pgcli, stripe, uipro-cli) — I can add them later.
+
+4. PLUGINS: Install the Claude Code plugins one by one. If any fail, tell me what went wrong and skip it — don't stop the whole process:
+   - claude plugin marketplace add obra/superpowers-marketplace
+   - claude plugin marketplace add nextlevelbuilder/ui-ux-pro-max-skill
+   - claude plugin install feature-dev@claude-plugins-official
+   - claude plugin install frontend-design@claude-plugins-official
+   - claude plugin install code-review@claude-plugins-official
+   - claude plugin install pr-review-toolkit@claude-plugins-official
+   - claude plugin install security-guidance@claude-plugins-official
+   - claude plugin install hookify@claude-plugins-official
+   - claude plugin install ralph-loop@claude-plugins-official
+   - claude plugin install superpowers@superpowers-marketplace
+   - claude plugin install ui-ux-pro-max@ui-ux-pro-max-skill
+
+5. MCPs: Detect my OS and install the MCP servers with the right syntax:
+   - context7 (documentation lookup)
+   - playwright (browser testing)
+   - sequential-thinking (reasoning)
+   - sentry (error tracking, HTTP transport)
+   On Windows use the "cmd /c" wrapper. On Mac/Linux use npx directly.
+
+6. SETTINGS: Read every file in ~/.claude/hooks/ and create my settings.json:
+   - Auto-detect my Python, Node, and NPX paths
+   - Wire ALL hooks to the correct event triggers using MY paths
+   - Show me what you created
+
+7. VERIFY: Tell me to close this session and reopen Claude Code, then run /qa-setup. Explain that some failures are normal (optional tools).
+
+8. PERSONALIZE: After verification, run the self-interview from the README to tailor everything to me.
+
+Important rules:
+- Explain everything like I'm 5
+- If something fails, tell me why and offer a fix — don't just stop
+- Don't delete or skip anything without asking me
+- After each step, tell me what just happened and what's next
+```
+
+That's it — Claude handles the rest. If you prefer to install manually, follow the steps below.
+
+### Prerequisites (Manual Install)
 
 - [Claude Code](https://code.claude.com) installed and working
 - Git, Node.js 18+, Python 3.10+
