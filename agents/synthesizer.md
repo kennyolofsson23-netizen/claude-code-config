@@ -89,6 +89,21 @@ After all ranked ideas, output exactly ONE decision block:
 [DECISION_NEEDED]Review the swarm results and pick a winner to build. Top recommendation: [#1 idea name]. Weighted score: XX/100.[/DECISION_NEEDED]
 ```
 
+### Part 3: Pipeline Recommendations
+
+For EACH idea, output:
+```
+[PIPELINE_REC]
+idea: "<title>"
+recommended: "light" | "full"
+reason: "<one-line justification>"
+estimated_cost: "$X-Y"
+estimated_time: "X-Y min"
+[/PIPELINE_REC]
+```
+
+Rules: light if single-page + <=3 features + no auth + no DB. Full otherwise. Edge cases → full.
+
 ## Rules
 
 - Read and incorporate data from ALL previous rounds — do not ignore any agent's output
