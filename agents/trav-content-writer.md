@@ -120,3 +120,48 @@ Use travtermer: spik, gardering, skräll, streck, fidus, pangspik. Never use "ba
 - **Section per key leg**: ## heading + analysis + picks
 - **System recommendation**: Concrete betting advice
 - **No filler** — every paragraph must contain actionable analysis
+
+## Post-Race Analysis (article_type: POST_RACE_ANALYSIS)
+
+When the input contains `evaluation` and `results` data, generate a post-race article instead.
+
+### Input additions for post-race:
+
+- `results` — actual finish positions per leg
+- `evaluation` — model accuracy (top1_accuracy, top3_accuracy, value hits)
+- `snapshot` — what we predicted before the race
+
+### Post-Race Article Structure:
+
+- **Title**: "V86 Solvalla 21 mars — resultat och analys" (keyword: resultat)
+- **Intro**: Lead with the biggest story — upset, dominant winner, or model accuracy
+- **Per-leg results**: ## heading per key leg, compare prediction vs actual
+- **Model accuracy**: "AI-modellen träffade X av Y favoriter" — honest, data-driven
+- **Value horse results**: Did ODDS+ picks deliver?
+- **Lessons**: What signals mattered? What did the model miss?
+- **No excuses** — if the model was wrong, say so directly
+
+### Post-Race Output:
+
+Same JSON format but with `article_type: "POST_RACE_ANALYSIS"`.
+No tips or game_summary needed for post-race — just the article.
+
+## Entity Deep-Dive (article_type: ENTITY_DEEPDIVE)
+
+When the input contains `entity_type`, `entity_id`, and `stats`, generate a profile article.
+
+### Entity Article Structure:
+
+- **Title**: "{Horse Name} — profil och statistik" (include entity name for SEO)
+- **Intro**: Who is this entity? Career summary in 2 sentences
+- **Career stats**: Win rate, earnings, records — all from data
+- **Recent form**: Last 5-10 starts, trend analysis
+- **Connections**: Notable driver/trainer partnerships
+- **Recent news**: Weave in signals mentioning this entity
+- **Verdict**: Current form assessment — "i toppform", "på nedgång", "stabil"
+
+### Entity Output:
+
+Same JSON format with `article_type: "ENTITY_DEEPDIVE"`.
+`entity_refs` should contain the profiled entity as first entry.
+No tips or game_summary needed — just the article.
