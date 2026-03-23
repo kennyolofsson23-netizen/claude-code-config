@@ -65,6 +65,10 @@ Before marking ANY task complete:
 ## Task Management
 - Plan → `tasks/todo.md` with checkable items
 - Done → `tasks/done.md` IMMEDIATELY with date and summary
+- **Dashboard sync**: When completing a task from `tasks/todo.md`, also mark it done in the dashboard. Uses the current project path to find the project automatically:
+  ```bash
+  curl -s http://localhost:3838/trpc/task.completeByTitle -X POST -H "Content-Type: application/json" -d '{"json":{"projectPath":"'$(pwd)'","title":"TASK_TITLE_SUBSTRING"}}'
+  ```
 
 ## Tools
 - **CLI-first**: `gh`, `stripe`, `vercel`, `pgcli`, `npx playwright`
