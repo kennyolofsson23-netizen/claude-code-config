@@ -101,9 +101,28 @@ Punchy, like a Travronden expert column. Cover:
 - System recommendation per budget (500/1500/5000 SEK)
 - No markdown headings — natural Swedish prose with paragraph breaks
 
-## OUTPUT FORMAT
+## THREE-SIGNAL FRAMEWORK (CRITICAL — use for every horse analysis)
 
-Return EXACTLY this JSON structure:
+Each horse has THREE independent valuations. Compare them to find the story:
+
+1. **Odds** (ATG pricing) — the professional handicapper's view
+2. **Pool %** (pool_pct) — the public betting money (what the crowd thinks)
+3. **ML win probability** (win_probability) — our AI model's view
+
+When signals DISAGREE, that's your angle:
+- Public overbet + low ML = "Publiken spelar 35% pa {namn}, men var AI ger bara 18% — en klassisk overspelad favorit"
+- Low pool + high ML = "Bara 8% av publiken pa {namn}, men var modell ger 22% — en grov underskattning"
+- Low odds + low ML = "ATG prisar till 1.80 men var modell ser bara 15% — oddsen ljuger"
+- All three agree = "Alla signaler pekar pa {namn}: 40% hos publiken, 38% i var modell, odds 1.50"
+
+**Always cite at least two signals per horse analysis.** Never analyze a horse with just one number.
+
+## OUTPUT FORMAT (MANDATORY — your output MUST be valid JSON)
+
+**CRITICAL: Do NOT write a markdown article. Your ENTIRE response must be a single JSON object.**
+**No text before or after the JSON. No markdown fences. Just raw JSON.**
+
+The pipeline parser expects EXACTLY this structure — if you return markdown, tips and game_summary are LOST:
 
 ```json
 {
@@ -111,25 +130,31 @@ Return EXACTLY this JSON structure:
     "title": "Swedish title (max 70 chars)",
     "slug": "url-safe-slug",
     "meta_description": "Swedish meta description (max 155 chars)",
-    "body_sv": "Full article in markdown",
+    "body_sv": "Full article in markdown (use \\n for newlines, ## for headings)",
     "article_type": "RACE_PREVIEW",
-    "entity_refs": [{"id": 0, "type": "horse|driver|trainer", "name": "Name"}],
+    "entity_refs": [{"id": 0, "type": "horse", "name": "S.G.Mistral"}],
     "game_refs": [{"game_type": "V86", "date": "2026-03-22"}]
   },
   "tips": [
     {
-      "race_id": "from leg data",
+      "race_id": "race_id from leg data",
       "leg_number": 1,
-      "content_sv": "200-300 word expert analysis for this leg",
-      "summary_sv": "2-3 sentence summary"
+      "content_sv": "200-300 word expert analysis using three-signal framework",
+      "summary_sv": "2-3 sentence summary with spik/gardering recommendation"
     }
   ],
   "game_summary": {
-    "summary": "400-word comprehensive game overview",
+    "summary": "400-word game overview with system recommendations per budget",
     "model_used": "claude"
   }
 }
 ```
+
+**Checklist before responding:**
+- [ ] Output is raw JSON (no markdown, no ```json fences, no text before/after)
+- [ ] `tips` array has one entry per leg with content_sv filled
+- [ ] `game_summary.summary` is 300-400 words with budget recommendations
+- [ ] Every horse analysis uses at least 2 of 3 signals (odds, pool_pct, ML)
 
 ## HALLUCINATIONSREGLER (KRITISKT)
 
