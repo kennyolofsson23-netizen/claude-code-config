@@ -68,9 +68,11 @@ Forbidden phrases (automatic -5 per occurrence):
 - "Med hög sannolikhet..."
 - "Det är värt att notera att..."
 
-## Output
+## Output (MANDATORY FORMAT — your ENTIRE response must be ONLY this)
 
-Return EXACTLY this JSON format:
+**CRITICAL: Do NOT write analysis, commentary, or markdown. Your ENTIRE response must be ONLY the [QUALITY_SCORE] block below. Nothing before it. Nothing after it. No headings. No explanation. JUST the tagged JSON.**
+
+If you write anything other than the tagged JSON block, the pipeline parser will fail and your score will be lost.
 
 [QUALITY_SCORE]
 {
