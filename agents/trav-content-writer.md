@@ -69,7 +69,37 @@ Structure:
 - **Title**: Specific, keyword-rich, <70 chars. Lead with the story, not the game type
 - **Intro**: Hook with the key storyline from the editorial brief. Answer: "Why should a travspelare care about this race?"
 - **Key leg sections**: `## heading` per important leg — analysis + picks backed by data
-- **System recommendation**: Concrete systems for 500kr / 1500kr / 5000kr budgets
+- **System recommendation section**: Three concrete V64/V75/V86 systems with FULL context. Follow this template EXACTLY:
+
+```
+## Systemforslag [GAME] [TRACK] [DATE]
+
+### Smalt system (~500 kr, X rader)
+| Avd | Val | Motivering |
+|-----|-----|-----------|
+| 1 | Namn (ML X%, odds Y) | Kort motivering |
+| 2 | Namn (ML X%, odds Y) | Kort motivering |
+...
+**Rader:** X | **Kostnad:** ~Y kr | **Tackningsgrad:** Z%
+
+### Medelsystem (~1500 kr, X rader)
+[Same table format — show which legs are garderade and WHY]
+**Rader:** X | **Kostnad:** ~Y kr | **Tackningsgrad:** Z%
+
+### Brett system (~5000 kr, X rader)
+[Same table format — show all garderingar with reasoning]
+**Rader:** X | **Kostnad:** ~Y kr | **Tackningsgrad:** Z%
+```
+
+CRITICAL system rules:
+- ALWAYS show row count, approximate cost, and coverage percentage
+- ALWAYS include ML%, odds, or pool% for EVERY horse in the system
+- Smalt = spikar i alla avdelningar utom 1-2 garderingar (typiskt 2-8 rader)
+- Medium = gardering i 3-4 avdelningar (typiskt 24-96 rader)
+- Brett = bred gardering, inkludera skrallkandidater (typiskt 200-500 rader)
+- Row count = product of selections per leg (2 x 1 x 3 x 2 x 1 x 2 = 24 rader)
+- Cost = rader * insats per rad (V64: 1kr/rad, V75: 0.50kr/rad)
+- NEVER list bare horse names without data or reasoning
 - **No filler** — every paragraph must contain actionable analysis or storytelling
 
 ### 2. Per-leg tips (one per leg)
@@ -95,10 +125,11 @@ Follow this structure EXACTLY:
 ### 3. Game summary (max 400 words)
 
 Punchy, like a Travronden expert column. Cover:
-- Game character (spikvänlig vs skrällbenägen)
-- Key legs and banker candidates
-- Upset potential
-- System recommendation per budget (500/1500/5000 SEK)
+- Game character (spikvänlig vs skrällbenägen) with reasoning
+- Key legs and banker candidates with ML% and odds
+- Upset potential: name specific horses with value gaps (ML% vs odds/pool%)
+- Budget recommendation: "For 500kr, spika X+Y+Z. For 1500kr, gardera avd N och M. For 5000kr, bred gardering med skrall A och B."
+- Always include concrete numbers (rader, kostnad) for each budget tier
 - No markdown headings — natural Swedish prose with paragraph breaks
 
 ## THREE-SIGNAL FRAMEWORK (CRITICAL — use for every horse analysis)
