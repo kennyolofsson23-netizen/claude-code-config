@@ -96,22 +96,27 @@ Only set keys the project actually imports/uses. Verify each key works by testin
 
 ## Hub Registration
 
-1. Clone/checkout hub repo (`apps/hub/` in kenny-corp monorepo)
-2. Add tool entry to `apps/hub/data/tools.json`:
+1. Update `C:/Users/Kenny/projects/kenny-corp/apps/hub/data/tools.json` — add entry with ALL required fields:
    ```json
    {
+     "slug": "tool-slug",
      "name": "Tool Name",
-     "slug": "tool-name",
-     "description": "One-line description",
-     "url": "https://tool-name.usetools.dev",
-     "category": "ai-interactive",
-     "tags": ["ai", "free", "no-login"],
-     "launchDate": "YYYY-MM-DD"
+     "description": "One-line description for cards",
+     "longDescription": "2-3 sentence description for the tool detail page",
+     "category": "utility",
+     "url": "https://tool-slug.usetools.dev",
+     "icon": "🔧",
+     "tags": ["relevant", "tags", "free", "no-login"],
+     "launchDate": "YYYY-MM-DD",
+     "featured": true
    }
    ```
-3. Update hub's `public/llms.txt` with new tool entry
-4. Commit and push hub changes
-5. Redeploy hub: `cd apps/hub && vercel deploy --prod`
+   Valid categories: `ai-powered`, `interactive`, `utility`, `trend-capture`
+2. Commit and push hub changes
+3. Redeploy hub: `cd C:/Users/Kenny/projects/kenny-corp/apps/hub && npx vercel deploy --prod`
+   - Prebuild auto-validates tools.json (build fails if entry is incomplete)
+   - Prebuild auto-generates llms.txt from tools.json
+4. Verify hub shows the new tool at `https://usetools.dev/tools`
 
 ## Output Format
 
@@ -140,9 +145,9 @@ Output your deployment result in this exact format:
 - [OK] No console errors
 
 ## Hub Registration
-- [OK] Added to tools.json
-- [OK] Updated hub llms.txt
-- [OK] Hub redeployed
+- [OK] Added to tools.json (all required fields)
+- [OK] Hub redeployed (prebuild validated + generated llms.txt)
+- [OK] Verified on usetools.dev/tools
 
 ## Summary
 Deployment <succeeded/failed>. Production URL: https://<tool>.usetools.dev
