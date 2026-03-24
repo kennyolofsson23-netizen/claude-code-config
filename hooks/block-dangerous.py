@@ -24,14 +24,14 @@ BLOCKED_PATTERNS = [
     "drop table",
     "truncate table",
     "railway up",
-    "vercel --prod",
-    "vercel deploy --prod",
 ]
 
 # These are warned but allowed (Claude should confirm with user first)
 WARN_PATTERNS = [
     "git push origin main",
     "git push origin master",
+    "vercel --prod",
+    "vercel deploy --prod",
 ]
 
 for pattern in BLOCKED_PATTERNS:
