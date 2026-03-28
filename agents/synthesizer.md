@@ -12,6 +12,11 @@ tools:
   - mcp__sequential-thinking__sequentialthinking
   - mcp__context7__resolve-library-id
   - mcp__context7__query-docs
+  - mcp__reddit__search_all_reddit
+  - mcp__reddit__get_hot_posts
+  - mcp__reddit__search_subreddit_content
+  - mcp__reddit__get_subreddit_info
+  - mcp__reddit__get_post_comments
 ---
 
 # Synthesizer Agent

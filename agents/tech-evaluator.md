@@ -12,6 +12,10 @@ tools:
   - mcp__context7__resolve-library-id
   - mcp__context7__query-docs
   - mcp__sequential-thinking__sequentialthinking
+  - mcp__google-news-trends__get_trending_terms
+  - mcp__google-news-trends__get_news_by_keyword
+  - mcp__google-news-trends__get_news_by_topic
+  - mcp__google-news-trends__get_top_news
 ---
 
 # Tech Evaluator Agent
