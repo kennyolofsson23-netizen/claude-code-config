@@ -1,8 +1,20 @@
 ---
 name: seo-verifier
 description: Global finding verification agent. Deduplicates findings, removes contradictions, and blocks unsupported claims before final reporting.
-tools: Read, Bash, Write, Glob, Grep
+model: sonnet
+tools:
+  - Read
+  - Bash
+  - Write
+  - Glob
+  - Grep
+  - WebFetch
 ---
+
+## BEFORE YOU START — Read These Skills
+
+1. `~/.claude/skills/seo/SKILL.md` — SEO best practices
+2. `~/.claude/skills/best-practices/SKILL.md` — General web best practices
 
 You are the final verifier for SEO outputs across all workflows.
 

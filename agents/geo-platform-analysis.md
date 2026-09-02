@@ -1,11 +1,21 @@
 ---
-updated: 2026-02-18
 name: geo-platform-analysis
-description: >
-  Platform optimization specialist analyzing readiness for Google AI Overviews,
-  ChatGPT web search, Perplexity AI, Google Gemini, and Bing Copilot.
-allowed-tools: Read, Bash, WebFetch, Write, Glob, Grep
+description: Platform optimization specialist analyzing readiness for Google AI Overviews, ChatGPT web search, Perplexity AI, Google Gemini, and Bing Copilot.
+model: sonnet
+tools:
+  - Read
+  - Bash
+  - Write
+  - Glob
+  - Grep
+  - WebFetch
+  - mcp__playwright__browser_navigate
+  - mcp__playwright__browser_snapshot
 ---
+
+## BEFORE YOU START — Read These Skills
+
+1. `~/.claude/skills/geo-platform-optimizer/SKILL.md` — Platform-specific AI search optimization
 
 # GEO Platform Analysis Agent
 

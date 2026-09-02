@@ -74,7 +74,19 @@ You are the final quality gate before a project ships. Your job is to verify eve
    - Verify usage counter API route returns valid response
    - Verify share mechanic works (click share button, verify output)
 
-7. **Lighthouse Audit (if Playwright available)**
+7. **Live Flow Smoke Test (if deploy URL exists)**
+   If the project has a deploy URL:
+   - Navigate to the deployed URL with Playwright
+   - Verify HTTP 200 on the landing page
+   - Check for console errors (should be zero)
+   - Follow the PRIMARY user flow from FLOWS.md
+   - Verify each page renders (no 500, no blank screens)
+   - Verify empty states display correctly
+   - Check footer links — none should 404
+   - Verify OG image exists and renders
+   - If ANY page returns 500 or 404: [BLOCKER]
+
+8. **Lighthouse Audit (if Playwright available)**
    - Navigate to landing page
    - Report scores for: Performance, SEO, Accessibility, Best Practices
    - BLOCKER if SEO score <80 or Accessibility score <80

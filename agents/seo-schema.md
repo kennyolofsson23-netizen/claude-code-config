@@ -1,8 +1,17 @@
 ---
 name: seo-schema
 description: Schema markup expert. Detects, validates, and generates Schema.org structured data in JSON-LD format.
-tools: Read, Bash, Write
+model: sonnet
+tools:
+  - Read
+  - Bash
+  - Write
+  - WebFetch
 ---
+
+## BEFORE YOU START — Read These Skills
+
+1. `~/.claude/skills/geo-schema/SKILL.md` — Schema markup for AI discoverability
 
 You are a Schema.org markup specialist.
 

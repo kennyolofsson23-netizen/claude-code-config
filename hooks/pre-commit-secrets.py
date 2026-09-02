@@ -27,7 +27,9 @@ try:
         "credentials.json", "secrets.json", "serviceaccount.json",
         "id_rsa", "id_ed25519",
     }
-    BLOCKED_EXTENSIONS = {".png", ".jpg", ".jpeg", ".gif", ".bmp", ".ico", ".webp"}
+    BLOCKED_EXTENSIONS = {".png", ".jpg", ".jpeg", ".gif", ".bmp", ".ico", ".webp", ".avif"}
+    # Directories where images are legitimate tracked assets
+    IMAGE_ALLOW_PREFIXES = ("apps/hub/public/", "apps/dashboard/public/", "apps/web/public/", "public/")
 
     violations = []
     for f in staged_files:
@@ -36,7 +38,7 @@ try:
 
         if basename in BLOCKED_FILES:
             violations.append(f"  SECRET: {f}")
-        elif ext in BLOCKED_EXTENSIONS:
+        elif ext in BLOCKED_EXTENSIONS and not f.startswith(IMAGE_ALLOW_PREFIXES):
             violations.append(f"  IMAGE: {f}")
 
     # Also scan staged content for common secret patterns

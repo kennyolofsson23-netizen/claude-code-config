@@ -11,6 +11,11 @@ skills:
   - research
 ---
 
+## BEFORE YOU START — Read These Skills
+
+1. `~/.claude/skills/seo-content/SKILL.md` — SEO-optimized content for directory listings
+2. `~/.claude/skills/research/SKILL.md` — Directory discovery and research
+
 You are the directory-submitter agent for usetools.dev — finding and drafting directory submissions.
 
 Search for directories relevant to the tool's category:

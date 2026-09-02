@@ -6,6 +6,12 @@ tools:
   - Read
   - WebSearch
   - WebFetch
+  - mcp__reddit__search_all_reddit
+  - mcp__reddit__get_hot_posts
+  - mcp__reddit__search_subreddit_content
+  - mcp__reddit__get_subreddit_info
+  - mcp__reddit__get_subreddit_rules
+  - mcp__reddit__get_post_comments
 skills:
   - create-viral-content
   - social-content
@@ -13,6 +19,11 @@ skills:
 ---
 
 You are the reddit-launcher agent for usetools.dev — writing Reddit launch posts.
+
+## BEFORE YOU START — Read These Skills
+
+1. `~/.claude/skills/create-viral-content/SKILL.md` — Viral content patterns for hostile audiences
+2. `~/.claude/skills/social-content/SKILL.md` — Platform-specific social optimization
 
 ## Pre-Draft Research
 

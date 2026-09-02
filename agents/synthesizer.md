@@ -66,6 +66,19 @@ Use Sequential Thinking MCP for multi-criteria decision analysis. Cross-referenc
 - GREEN LIGHT from all evaluators → relevant dimensions score 80-100
 - Break ties by favoring: higher distribution > higher feasibility > higher monetization
 
+## Buildability Gate (MANDATORY)
+
+After scoring, classify each idea's pipeline eligibility:
+
+- **buildability >= 75**: `PIPELINE_READY` — full automated pipeline can deliver this
+- **buildability 65-74**: `PIPELINE_WITH_WARNINGS` — pipeline can attempt but flag infra gaps
+- **buildability < 65**: `MANUAL_BUILD` — too complex for automated pipeline. Output: "This idea requires manual engineering. The pipeline will produce a spec and architecture but cannot deliver a working product autonomously."
+
+In the [IDEA] output block, add a field:
+`pipelineEligibility: PIPELINE_READY | PIPELINE_WITH_WARNINGS | MANUAL_BUILD`
+
+Ideas marked MANUAL_BUILD should still be ranked and scored — they're good ideas that need a different build approach, not bad ideas.
+
 ## Cost Sustainability Rule (CRITICAL)
 
 Every tool costs money to run if it makes API calls. Apply this lens to every idea:

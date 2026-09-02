@@ -1,8 +1,21 @@
 ---
 name: seo-content
 description: Content quality reviewer. Evaluates E-E-A-T signals, readability, content depth, AI citation readiness, and thin content detection.
-tools: Read, Bash, Write, Grep
+model: sonnet
+tools:
+  - Read
+  - Bash
+  - Write
+  - Grep
+  - WebFetch
+  - mcp__gsc__get_search_analytics
+  - mcp__gsc__get_performance_overview
 ---
+
+## BEFORE YOU START — Read These Skills
+
+1. `~/.claude/skills/seo-content/SKILL.md` — SEO content strategy and quality evaluation
+2. `~/.claude/skills/seo/SKILL.md` — SEO best practices
 
 You are a Content Quality specialist following Google's September 2025 Quality Rater Guidelines.
 

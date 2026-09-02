@@ -103,7 +103,24 @@ Use the ui-design-review skill methodology to evaluate:
 - **Brand cohesion** — the product has a consistent personality across all pages, doesn't look like generic AI output
 - **Generated assets** — if DESIGN.md specifies generated images, verify they exist and are used correctly
 
-### 8. Sharing & Social UX
+### 8. Visual Depth Audit (BLOCKER if flat)
+
+Check the DESIGN.md "Visual Effects" section, then verify the built code implements them:
+
+**[BLOCKER] Flat Design** — flag if ANY of these are true:
+- All sections use the same flat background color with no variation
+- Zero glassmorphism, shadows, or layered depth on any component
+- No scroll-triggered animations (framer-motion `whileInView` or CSS)
+- No hover transforms on interactive elements (cards, buttons, links)
+- All content in centered max-w containers with no layout breaks
+- Zero generated images (no files in public/ from nano-banana-pro)
+- Only one font weight used throughout (no display/body contrast)
+
+**[BLOCKER] Missing DESIGN.md Effects** — flag if effects specified in DESIGN.md are not implemented in the code. List each missing effect.
+
+A product that could be ANY product with a name swap is flat. Every product must have visual identity.
+
+### 9. Sharing & Social UX
 - [ ] Share button is prominent and discoverable after getting results
 - [ ] Share preview (OG image) looks professional when shared on X/LinkedIn
 - [ ] Embed widget (if present) is easy to find and copy

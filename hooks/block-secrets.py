@@ -1,4 +1,7 @@
-"""PreToolUse hook for Write/Edit — blocks writing to secret/binary files."""
+"""PreToolUse hook for Write/Edit — blocks writing to secret/binary files.
+
+Allows .env/.env.local (dev config), blocks actual credential files.
+"""
 import sys
 import json
 import os
@@ -10,9 +13,12 @@ file_path = tool_input.get("file_path", "")
 basename = os.path.basename(file_path).lower()
 ext = os.path.splitext(file_path)[1].lower()
 
-# Block secret/env files
+# Allow dev env files — these are just config, not secrets
+ALLOWED_ENV = {".env", ".env.local", ".env.development", ".env.test", ".env.example"}
+
+# Block actual credential/key files
 BLOCKED_FILES = {
-    ".env", ".env.local", ".env.production", ".env.staging",
+    ".env.production", ".env.staging",
     "credentials.json", "secrets.json", "serviceaccount.json",
     "id_rsa", "id_ed25519", ".npmrc", ".pypirc",
 }
@@ -20,7 +26,7 @@ BLOCKED_FILES = {
 if basename in BLOCKED_FILES:
     print(
         f"BLOCKED: Cannot write to '{basename}'. "
-        f"Secrets and env files must be edited manually by the user.",
+        f"Production secrets and credential files must be edited manually.",
         file=sys.stderr,
     )
     sys.exit(2)

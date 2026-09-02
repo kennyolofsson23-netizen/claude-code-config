@@ -62,6 +62,43 @@ Create a file called `DESIGN.md` in the project root with these sections:
 - Shadow system (elevation levels with specific values)
 - Design tokens — define as CSS custom properties following design-system-creation patterns
 
+### 1b. Visual Depth Specification (MANDATORY)
+
+Every DESIGN.md MUST include a "Visual Effects" section with CONCRETE CSS/Tailwind implementations — not abstract descriptions. The builder will copy-paste these into code.
+
+For EACH page, specify at least 3 of these depth techniques with exact implementation:
+
+**Background Treatments** (pick 1-2 per page):
+- Gradient mesh: exact CSS `radial-gradient` values with colors from your palette
+- Noise/grain overlay: opacity level (e.g., "3% noise via SVG filter")
+- Grid pattern: grid size and line opacity
+- Animated gradient: keyframe definition with colors and timing
+
+**Surface Depth** (pick 2-3):
+- Glassmorphism cards: exact `backdrop-blur` value, bg opacity, border opacity
+- Layered shadows: multi-level box-shadow values (e.g., "0 1px 2px rgba(0,0,0,0.1), 0 8px 24px rgba(0,0,0,0.15)")
+- Floating elements: transform values for hover states
+- Border glow: box-shadow with accent color at low opacity
+
+**Motion** (pick 2-3):
+- Page load sequence: which elements animate in, delay between each (e.g., "hero title 0ms, subtitle 100ms, CTA 200ms, code block 300ms")
+- Scroll reveals: which sections use `animate-fade-in-up` on scroll entry
+- Hover transforms: exact transform + transition values (e.g., "scale(1.02) translateY(-2px) over 200ms ease-out")
+- Interactive elements: cursor effects, button press states
+
+**Layout Breaks** (pick 1-2 per page):
+- Asymmetric grid: exact column ratios (e.g., "lg:grid-cols-5 with 2/5 + 3/5 split")
+- Overlapping elements: negative margins or absolute positioning specs
+- Full-bleed sections: which sections break the max-width container
+- Diagonal/angled dividers: clip-path or transform values
+
+**Typography Drama** (pick 1-2):
+- Hero text: exact size at each breakpoint with tracking and leading values
+- Display vs body contrast: how much size difference between headings and body
+- Accent text: which elements use the mono/accent font
+
+The builder MUST implement every effect listed here. If an effect isn't in DESIGN.md, it won't exist in the product.
+
 ### 2. User Flows
 For each core user journey:
 - Step-by-step flow with page transitions
@@ -106,8 +143,20 @@ For every page in the route map (from ARCHITECTURE.md):
 - Micro-interactions (button press, toggle, expand, hover effects)
 - Scroll-triggered animations (if appropriate for the product type)
 
-### 8. Generated Assets
-List every image generated for the project:
+### 8. Generated Visual Assets (MANDATORY — no product ships without custom images)
+
+Use nano-banana-pro to generate these assets. Run the generation command and save files to `public/`:
+
+**Required for every product:**
+1. **Hero visual** (1-2 images): Abstract background, product illustration, or conceptual art. NOT generic stock. Must match the product's personality and color palette.
+   - Command: `uv run ~/.claude/skills/nano-banana-pro/scripts/generate_image.py --prompt "..." --filename "public/hero.png" --resolution 2K`
+2. **OG image** (1200x630): Social sharing card with product name and tagline over branded background.
+   - Command: `uv run ~/.claude/skills/nano-banana-pro/scripts/generate_image.py --prompt "..." --filename "public/og-image.png" --resolution 2K`
+3. **Favicon concept** (if no logo exists): Simple icon that represents the product.
+
+Include the EXACT prompts you'd use for each image in DESIGN.md so the builder can generate them.
+
+Also list every image generated for the project:
 - File path, dimensions, purpose
 - The exact prompt used to generate it (so it can be re-generated)
 - Why this image was included (or why images were skipped)

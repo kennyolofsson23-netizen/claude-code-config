@@ -5,6 +5,7 @@ model: haiku
 tools:
   - Read
   - Bash
+  - mcp__sequential-thinking__sequentialthinking
 ---
 
 You receive a JSON article and re-write it for AI citability.

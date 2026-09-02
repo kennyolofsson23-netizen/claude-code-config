@@ -26,6 +26,12 @@ When a prompt matches ANY installed tool (see inventory injected at session star
 - Read the SKILL.md of unfamiliar skills before invoking
 - This applies to ALL skills/commands/plugins — current and future
 
+## Domain Knowledge — NEVER Guess
+- **NEVER explain domain concepts from memory or training data.** Launch a research agent FIRST, wait for results, THEN explain citing sources.
+- This applies to ATG/trav mechanics (reducerat system, gardering, villkor, poolspel) and ANY unfamiliar domain concept the user asks about.
+- Pattern-matching to something you already know IS guessing. If you haven't researched it THIS session, you don't know it.
+- One deep research pass beats five shallow guesses. Enforced by `domain-research-required.js` hook.
+
 ## Verification Gate
 Before marking ANY task complete:
 - Run tests and show output
@@ -52,14 +58,17 @@ Before marking ANY task complete:
 - **CLI-first**: ALWAYS prefer CLIs over MCPs. If open-source, use `/cli-anything` to wrap it
 - When you find something useful: install it immediately, don't just mention it
 
-## Subagent Strategy
-- Use subagents liberally — research, exploration, parallel work, code review, testing
+## Subagent Strategy (CRITICAL — context survival)
+- **EVERY skill invocation → subagent.** Skills inject their full instruction set into context. Running nano-banana-pro, competitive-analysis, seo-audit, etc. in the main context wastes 5-20K tokens per skill. Delegate to a subagent so the skill docs stay in the subagent's context, not yours.
+- **EVERY large file read → subagent.** Don't read 500+ line files in main context. Send a subagent to read and extract what you need.
+- Use subagents liberally — research, exploration, parallel work, code review, testing, image generation, audits
 - One task per subagent. Use `isolation: worktree` for parallel code modifications
 - Use `task-coordinator` agent for complex multi-agent orchestration
 
 ## Context Hygiene
 - After compaction: ALWAYS re-read active files before editing
 - Use subagents for ALL investigation/research/discovery
+- **Never invoke skills directly in main context** — always delegate to subagent
 - When something goes wrong 2+ times: stop, re-think, don't keep retrying
 
 ## Task Management

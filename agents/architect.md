@@ -110,17 +110,23 @@ Create ARCHITECTURE.md that implements every feature from your SPEC.md:
 - Structured data types: `SoftwareApplication` + `FAQPage` JSON-LD
 - `llms.txt` content plan
 - FAQ schema plan (3-5 questions with clear answers)
-- First-paragraph definition: "[Name] is a free AI [category] tool that [function]."
+- First-paragraph definition: depends on product profile (see Project Brief)
 
 ### 11. Analytics Plan (ARCHITECTURE.md)
 - Key events to track: shares, AI uses, completions, return visits
-- Plausible custom event names
-- Usage counter design (what action increments it?)
+- For free-tool profile: Plausible custom event names + usage counter
+- For paid-saas profile: product analytics (Posthog/Mixpanel or custom), conversion funnel tracking
 
-### 12. Monetization Hooks (ARCHITECTURE.md)
-- Where premium tier would go (design for free, build hooks for later)
-- API access points
-- Affiliate opportunities
+### 12. Monetization (ARCHITECTURE.md)
+- **Free-tool profile**: Design for free, build hooks for later premium tier
+- **Paid-saas profile**: Full billing architecture — Stripe integration, pricing tiers, subscription management, usage metering if applicable
+
+### 13. User Flows (FLOWS.md)
+- Complete user journeys for each persona
+- Empty state designs for every page
+- Error recovery flows
+- Seed data definitions
+- FLOWS.md is read by the builder and user-tester — flows that aren't documented won't be built or tested
 
 ### Skill References
 - `~/.claude/skills/seo-audit/SKILL.md` — SEO requirements
@@ -130,9 +136,12 @@ Create ARCHITECTURE.md that implements every feature from your SPEC.md:
 - `~/.claude/skills/performance/SKILL.md` — performance architecture decisions
 - `~/.claude/skills/core-web-vitals/SKILL.md` — CWV-aware architecture
 
-## Vercel Serverless Constraints (MANDATORY for usetools.dev)
+## Vercel Serverless Constraints
 
-All usetools.dev tools deploy to Vercel serverless. These constraints are NON-NEGOTIABLE:
+**Apply when**: Project Brief says "Free Tool (usetools.dev)" OR no Project Brief is provided.
+**Skip when**: Project Brief says "Paid SaaS (standalone)" — paid products may need a full backend (Node server, Docker, etc.) depending on requirements. Still apply constraints 3, 4, 6, 7 regardless of profile.
+
+These constraints apply to all usetools.dev tools and any project deploying to Vercel serverless:
 
 1. **No fire-and-forget async** — Vercel kills the function after the response is sent. Long-running work (AI generation, polling) must be awaited synchronously in the request handler, not spawned as background tasks.
 2. **No in-memory state across requests** — Each invocation may hit a different instance. Never use `new Map()` or module-level variables to store state between requests. Use a database, Vercel KV (if provisioned), or client-side storage (sessionStorage/localStorage).

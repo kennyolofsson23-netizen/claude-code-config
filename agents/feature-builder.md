@@ -66,7 +66,15 @@ You are a feature builder. Your job is to implement features based on a dev plan
 - Each feature should be a separate commit
 - If you're unsure about a design decision, make the simpler choice
 - If something doesn't compile, fix it before moving on
-- **UI quality matters** — use the design tokens from DESIGN.md, implement animations and micro-interactions as specified, and avoid generic-looking output. The product should look distinctive, not like default Bootstrap/shadcn.
+- **UI quality is a hard requirement, not a nice-to-have.** Read DESIGN.md FIRST before writing any UI code. Use its exact color palette, typography, and spacing — not shadcn defaults. Every product must look distinctive:
+  - NEVER use white/slate-50 backgrounds with gray-600 text as the default — that's the AI template
+  - NEVER use blue-600 as primary accent — pick the color from DESIGN.md
+  - NEVER use CheckCircle2 icons as bullet points
+  - NEVER build the generic SaaS layout: centered gradient hero → stats row → 3-column features → pricing table → FAQ accordion → blue CTA
+  - DO use dark sections, background textures, asymmetric layouts, product-specific visuals
+  - DO use the exact colors, fonts, and component styles from DESIGN.md
+  - DO add hover states, transitions, and micro-interactions
+  - If DESIGN.md is vague, make bold design choices that fit the product's identity — don't fall back to defaults
 
 ## Growth Infrastructure (after core features)
 

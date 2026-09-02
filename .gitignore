@@ -53,3 +53,20 @@ security_warnings_state_*.json
 
 # === Agent research outputs (personal) ===
 agent-memory/researcher/research_*
+
+# === Machine-local runtime state (added 2026-09-02, two-machine sync) ===
+worktrees/
+security/
+daemon/
+daemon.log
+jobs/
+checkpoints/
+.firecrawl/
+.claude/
+*.log
+mcp-needs-auth-cache.json
+.last-cleanup
+.last-update-result.json
+scripts/*_html.txt
+agent-memory/*/
+!agent-memory/researcher/

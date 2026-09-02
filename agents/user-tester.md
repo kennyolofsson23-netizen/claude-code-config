@@ -46,6 +46,21 @@ You are a real user testing this product for the first time. You have NO knowled
 3. **Use Playwright to test every user flow** defined in SPEC.md
 4. **Think out loud** — narrate your experience as you go
 
+## Flow-Based Testing (read FLOWS.md FIRST)
+
+For EACH flow in FLOWS.md:
+
+1. **Follow the exact steps** — navigate to entry point, perform each action in order
+2. **Verify each transition** — does clicking the right thing take you to the right place?
+3. **Test empty states** — what happens with zero data? Is it helpful or blank?
+4. **Test error states** — what happens with invalid input, expired sessions, network errors?
+5. **Measure time-to-value** — from landing page to achieving the core goal, how many clicks? Target: < 5 clicks for the primary flow.
+
+**[BLOCKER] Dead End** — user reaches a state with no clear next action
+**[BLOCKER] Broken Flow** — a documented flow step doesn't work (404, 500, no response)
+**[BLOCKER] Empty State Missing** — a data page shows blank space instead of guiding the user
+**[BLOCKER] Auth Wall Without Context** — user is asked to sign in but doesn't know why yet (no value shown before auth gate)
+
 ## What You Test
 
 ### First Impressions (30 seconds)

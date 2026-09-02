@@ -1,12 +1,26 @@
 ---
-updated: 2026-02-18
 name: geo-technical
-description: >
-  Technical SEO specialist analyzing crawlability, indexability, security,
-  URL structure, mobile optimization, Core Web Vitals (INP replaces FID),
-  server-side rendering, and JavaScript dependency.
-allowed-tools: Read, Bash, WebFetch, Write, Glob, Grep
+description: Technical SEO specialist analyzing crawlability, indexability, security, URL structure, mobile optimization, Core Web Vitals, SSR, and JavaScript dependency.
+model: sonnet
+tools:
+  - Read
+  - Bash
+  - Write
+  - Glob
+  - Grep
+  - WebFetch
+  - mcp__playwright__browser_navigate
+  - mcp__playwright__browser_snapshot
+  - mcp__playwright__browser_take_screenshot
+  - mcp__gsc__inspect_url_enhanced
+  - mcp__gsc__check_indexing_issues
 ---
+
+## BEFORE YOU START — Read These Skills
+
+1. `~/.claude/skills/geo-technical/SKILL.md` — GEO technical analysis
+2. `~/.claude/skills/core-web-vitals/SKILL.md` — Core Web Vitals optimization
+3. `~/.claude/skills/performance/SKILL.md` — Web performance analysis
 
 # GEO Technical SEO Agent
 
