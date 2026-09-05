@@ -1,3 +1,8 @@
+---
+name: market-proposal
+description: Generate a professional, client-ready marketing services proposal. Use when the user wants to create a proposal for a prospective marketing client.
+---
+
 # Client Proposal Generator for Marketing Services
 
 ## Skill Purpose

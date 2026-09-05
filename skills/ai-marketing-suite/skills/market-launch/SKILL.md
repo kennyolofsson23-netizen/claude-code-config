@@ -1,3 +1,8 @@
+---
+name: market-launch
+description: Generate a complete, week-by-week launch playbook for any product, service, or feature launch. Use when the user is planning to launch a new product, service, feature, or offering.
+---
+
 # Product/Service Launch Playbook Generator
 
 ## Skill Purpose

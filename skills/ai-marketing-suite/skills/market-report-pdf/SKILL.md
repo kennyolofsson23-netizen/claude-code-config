@@ -1,3 +1,8 @@
+---
+name: market-report-pdf
+description: Generate a professional, visually polished PDF marketing report using the Python script `scripts/generate_pdf_report.py`. Use when the user wants a PDF version of the marketing report (not just Markdown).
+---
+
 # PDF Marketing Report Generator
 
 ## Skill Purpose

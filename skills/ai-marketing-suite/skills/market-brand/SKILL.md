@@ -1,3 +1,8 @@
+---
+name: market-brand
+description: Analyze a brand's voice, tone, and messaging across all available channels and generate a comprehensive brand voice guidelines document. Use when the user wants to understand or document a brand's voice.
+---
+
 # Brand Voice Analysis and Guidelines Generation
 
 ## Skill Purpose

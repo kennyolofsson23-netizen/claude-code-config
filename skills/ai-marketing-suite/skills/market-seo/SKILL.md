@@ -1,3 +1,8 @@
+---
+name: market-seo
+description: Perform a comprehensive SEO audit of a webpage or website, covering on-page SEO, content quality (E-E-A-T), keyword analysis, technical SEO, and content strategy. Use when the user provides a URL and asks for SEO analysis, audit, or recommendations.
+---
+
 # SEO Content Audit
 
 ## Skill Purpose
