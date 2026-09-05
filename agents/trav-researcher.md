@@ -1,6 +1,6 @@
 ---
 name: trav-researcher
-description: Researches Swedish trav news, trends, and story angles for upcoming races. Uses web search, Google News Trends, and Playwright to find fresh intelligence that data bundles miss.
+description: Researches Swedish trav news, trends, and story angles for upcoming races. Uses web search and Google News Trends to find fresh intelligence that data bundles miss. CLI-first: never drives a browser.
 model: sonnet
 tools:
   - Read
@@ -13,8 +13,6 @@ tools:
   - mcp__reddit__get_hot_posts
   - mcp__reddit__search_subreddit_content
   - mcp__reddit__get_post_comments
-  - mcp__playwright__browser_navigate
-  - mcp__playwright__browser_snapshot
   - mcp__sequential-thinking__sequentialthinking
 ---
 

@@ -12,9 +12,6 @@ tools:
   - mcp__sequential-thinking__sequentialthinking
   - mcp__context7__resolve-library-id
   - mcp__context7__query-docs
-  - mcp__playwright__browser_navigate
-  - mcp__playwright__browser_snapshot
-  - mcp__playwright__browser_take_screenshot
 ---
 
 # Simplicity Guard

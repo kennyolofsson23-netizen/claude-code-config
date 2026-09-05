@@ -21,9 +21,6 @@ tools:
   - mcp__google-news-trends__get_news_by_keyword
   - mcp__google-news-trends__get_news_by_topic
   - mcp__google-news-trends__get_top_news
-  - mcp__playwright__browser_navigate
-  - mcp__playwright__browser_snapshot
-  - mcp__playwright__browser_take_screenshot
 ---
 
 # Market Analyst Agent
