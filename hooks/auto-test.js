@@ -28,12 +28,34 @@ const testPatterns = [
 const testFile = testPatterns.find((p) => fs.existsSync(p));
 if (!testFile) process.exit(0);
 
+// Resolve a real Python. On Windows, `python`/`python3` can resolve to the
+// 121-byte Windows Store app-execution alias under WindowsApps, which prints
+// "Python was not found" instead of running. Skip anything living there.
+function resolvePython() {
+  try {
+    const out = execFileSync(
+      process.platform === "win32" ? "where" : "which",
+      ["python"],
+      { stdio: "pipe", timeout: 3000 }
+    ).toString();
+    const real = out
+      .split(/\r?\n/)
+      .map((s) => s.trim())
+      .filter(Boolean)
+      .filter((p) => !p.toLowerCase().includes("windowsapps"));
+    if (real.length) return real[0];
+  } catch (_) {}
+  return "python";
+}
+
+const PYTHON = resolvePython();
+
 const runners = {
   ".ts": { cmd: "npx", args: ["vitest", "run", testFile, "--reporter=verbose"] },
   ".tsx": { cmd: "npx", args: ["vitest", "run", testFile, "--reporter=verbose"] },
   ".js": { cmd: "npx", args: ["jest", "--testPathPattern", testFile, "--no-coverage"] },
   ".jsx": { cmd: "npx", args: ["jest", "--testPathPattern", testFile, "--no-coverage"] },
-  ".py": { cmd: "python", args: ["-m", "pytest", testFile, "-x", "-q"] },
+  ".py": { cmd: PYTHON, args: ["-m", "pytest", testFile, "-x", "-q"] },
   ".go": { cmd: "go", args: ["test", "-run", "", "-v", dir] },
   ".rs": { cmd: "cargo", args: ["test", "--quiet"] },
 };

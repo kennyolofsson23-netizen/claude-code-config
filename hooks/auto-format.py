@@ -16,7 +16,27 @@ ext = os.path.splitext(file_path)[1].lower()
 
 import shutil
 
-PYTHON = shutil.which("python3") or shutil.which("python") or "python"
+
+def _resolve_python():
+    """Interpreter to format with.
+
+    sys.executable is this hook's own interpreter, which settings.json pins to
+    the real install — always correct and always present. Falling back to
+    which("python3") is actively wrong on Windows: python3 resolves ONLY to the
+    121-byte Windows Store app-execution alias, which prints "Python was not
+    found" instead of running anything.
+    """
+    if sys.executable and os.path.basename(sys.executable).lower().startswith("python"):
+        return sys.executable
+    for name in ("python", "python3"):
+        found = shutil.which(name)
+        # Skip the Store stub: it lives under WindowsApps and is a tiny shim.
+        if found and "windowsapps" not in found.lower():
+            return found
+    return "python"
+
+
+PYTHON = _resolve_python()
 NODE = shutil.which("node") or "node"
 NPX = shutil.which("npx") or ("npx.cmd" if os.name == "nt" else "npx")
 

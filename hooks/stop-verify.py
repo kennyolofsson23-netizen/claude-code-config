@@ -3,6 +3,7 @@
 import os
 import sys
 import json
+import datetime
 
 data = json.load(sys.stdin)
 messages = []
@@ -23,14 +24,23 @@ if os.path.exists("tasks/todo.md"):
         for item in unchecked[:5]:
             messages.append(f"  {item}")
 
-# Remind to log task pattern if tasks/ directory exists
+# Remind to log task patterns only when patterns.log is actually stale.
+# Firing this on every single stop makes it noise that gets tuned out, so it
+# only speaks up when today's work hasn't been recorded yet.
 if os.path.isdir("tasks"):
-    messages.append("")
-    messages.append("BEFORE STOPPING: Did you log this task to tasks/patterns.log?")
-    messages.append("Format: YYYY-MM-DD | task-type | short description")
-    messages.append(
-        "If task type already appears 2+ times → CREATE a skill or agent NOW"
-    )
+    log_path = os.path.join("tasks", "patterns.log")
+    today = datetime.date.today()
+    stale = True
+    if os.path.exists(log_path):
+        modified = datetime.date.fromtimestamp(os.path.getmtime(log_path))
+        stale = modified < today
+    if stale:
+        messages.append("")
+        messages.append("Not logged today: append this task to tasks/patterns.log")
+        messages.append("Format: YYYY-MM-DD | task-type | short description")
+        messages.append(
+            "If task type already appears 2+ times → CREATE a skill or agent NOW"
+        )
 
 if messages:
     print("\n".join(messages), file=sys.stderr)

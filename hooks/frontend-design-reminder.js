@@ -25,6 +25,25 @@ try {
 }
 
 const prompt = (payload.prompt || '').toLowerCase()
+const cwd = (payload.cwd || process.cwd() || '').replace(/\\/g, '/')
+
+// Structural conventions of a specific codebase — NOT visual style. These are
+// facts about how a repo is wired (what the root layout already does, which
+// utility classes exist), so they only apply inside that repo. Visual
+// direction is a per-project design decision and is deliberately not fixed here.
+const PROJECT_CONVENTIONS = [
+  {
+    match: (c) => /\/v85(\/|$)/i.test(c),
+    name: 'V85 / Travmaskinen web app',
+    lines: [
+      'Root layout already sets background and min-height — do not wrap a page in `min-h-screen` or `bg-*`.',
+      'Reuse the existing `glass-surface` and `history-table` classes from globals.css instead of re-implementing them.',
+      'Numeric/tabular data uses the `font-data` stack with `tabular-nums`.',
+    ],
+  },
+]
+
+const project = PROJECT_CONVENTIONS.find((p) => p.match(cwd))
 
 // Keywords that indicate frontend work. Match aggressively — false positives
 // are cheap (one extra skill load), false negatives are what we're fixing.
@@ -82,31 +101,48 @@ const NEGATIVE = [
   'python script',
 ]
 
-const hits = KEYWORDS.filter((k) => prompt.includes(k))
-const negHits = NEGATIVE.filter((k) => prompt.includes(k))
+// Match on word boundaries, not raw substrings. A plain includes() fires 'ui'
+// inside build/quiet/guide/liquid, 'card' inside discard, 'react' inside
+// reaction — which made this hook trigger on almost every prompt.
+const escapeRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+const matchesWord = (k) =>
+  new RegExp(`(^|[^a-z0-9])${escapeRe(k)}([^a-z0-9]|$)`, 'i').test(prompt)
+
+const hits = KEYWORDS.filter(matchesWord)
+const negHits = NEGATIVE.filter(matchesWord)
 
 // Need at least one positive hit and not be dominated by backend talk
 if (hits.length === 0) process.exit(0)
 if (negHits.length > hits.length) process.exit(0)
 
+const projectBlock = project
+  ? `\nConventions of this codebase (${project.name}) — structural, not stylistic:\n` +
+    project.lines.map((l) => `- ${l}`).join('\n') + '\n'
+  : ''
+
 const reminder = `<system-reminder>
-FRONTEND WORK DETECTED in this prompt (matched: ${hits.slice(0, 5).join(', ')}).
+Frontend work detected in this prompt (matched: ${hits.slice(0, 5).join(', ')}).
 
-You MUST invoke the \`frontend-design\` skill via the Skill tool BEFORE writing
-or editing ANY .tsx / .jsx / .css / Tailwind code in this turn. This is non-
-negotiable — every prior frontend task that skipped this skill produced generic,
-off-brand output that had to be redone.
+Before writing or editing .tsx / .jsx / .css / Tailwind code, invoke the
+\`frontend-design\` skill.
 
-The skill enforces:
-- Travmaskinen dark ATG aesthetic (dark-950 bg, brand-500 purple, accent-500 cyan)
-- glass-surface system + history-table class from globals.css
-- Hero + atmosphere background blend pattern (see HeroRaceDay.tsx)
-- framer-motion staggerContainer / fadeInUp entrance animations
-- font-heading (Inter) for titles, font-data (Barlow Condensed) tabular-nums for numbers
-- NEVER wrap pages in min-h-screen / bg-* — root layout already handles this
+Choose the visual direction deliberately rather than defaulting. The
+\`ui-ux-pro-max\` skill ships a searchable local catalog — 50 active styles, 192
+palettes, 74 font pairings, 17 motion presets — so pick a direction from it, or
+follow the design language this project has already established.
 
-Invoke the skill NOW, before any other action.
-</system-reminder>`
+Avoid the default AI-UI signature unless the project's design language genuinely
+calls for it. These read as generic because they are the statistical centre of
+the training data, not because they are good choices:
+- dark background with a violet-to-cyan gradient
+- glassmorphism / backdrop-blur cards
+- Inter for everything
+- rounded-xl on every surface
+- staggered fade-up entrance animations on page load
+
+Typography and a colour palette derived from the subject matter differentiate a
+design far more than any effect does.
+${projectBlock}</system-reminder>`
 
 // stdout from a UserPromptSubmit hook is appended to the user's prompt as
 // additional context that Claude sees.
